@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:OpenBreath/theme_provider.dart';
 import 'package:OpenBreath/settings_provider.dart';
+import 'package:OpenBreath/l10n/app_localizations.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -13,12 +14,12 @@ class SettingsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(AppLocalizations.of(context).settings),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: const Text('Theme'),
+            title: Text(AppLocalizations.of(context).theme),
             trailing: DropdownButton<ThemeMode>(
               value: themeProvider.themeMode,
               onChanged: (ThemeMode? newValue) {
@@ -26,24 +27,49 @@ class SettingsScreen extends StatelessWidget {
                   themeProvider.setThemeMode(newValue);
                 }
               },
-              items: const <DropdownMenuItem<ThemeMode>>[
+              items: <DropdownMenuItem<ThemeMode>>[
                 DropdownMenuItem<ThemeMode>(
                   value: ThemeMode.system,
-                  child: Text('System Default'),
+                  child: Text(AppLocalizations.of(context).themeSystem),
                 ),
                 DropdownMenuItem<ThemeMode>(
                   value: ThemeMode.light,
-                  child: Text('Light'),
+                  child: Text(AppLocalizations.of(context).themeLight),
                 ),
                 DropdownMenuItem<ThemeMode>(
                   value: ThemeMode.dark,
-                  child: Text('Dark'),
+                  child: Text(AppLocalizations.of(context).themeDark),
+                ),
+              ],
+            ),
+          ),
+          ListTile(
+            title: Text(AppLocalizations.of(context).language),
+            trailing: DropdownButton<LanguagePreference>(
+              value: settingsProvider.languagePreference,
+              onChanged: (LanguagePreference? newValue) {
+                if (newValue != null) {
+                  settingsProvider.setLanguagePreference(newValue);
+                }
+              },
+              items: <DropdownMenuItem<LanguagePreference>>[
+                DropdownMenuItem<LanguagePreference>(
+                  value: LanguagePreference.system,
+                  child: Text(AppLocalizations.of(context).languageSystem),
+                ),
+                DropdownMenuItem<LanguagePreference>(
+                  value: LanguagePreference.en,
+                  child: Text(AppLocalizations.of(context).languageEnglish),
+                ),
+                DropdownMenuItem<LanguagePreference>(
+                  value: LanguagePreference.nl,
+                  child: Text(AppLocalizations.of(context).languageDutch),
                 ),
               ],
             ),
           ),
           SwitchListTile(
-            title: const Text('Auto-select search bar'),
+            title: Text(AppLocalizations.of(context).autoSelectSearchBar),
             value: settingsProvider.autoSelectSearchBar,
             onChanged: (bool value) {
               settingsProvider.setAutoSelectSearchBar(value);

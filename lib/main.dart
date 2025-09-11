@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'exercise_screen.dart';
 import 'settings_screen.dart'; // Import the new settings screen
 import 'package:provider/provider.dart';
@@ -6,11 +7,11 @@ import 'package:OpenBreath/theme_provider.dart';
 import 'package:OpenBreath/data.dart'; // Import the data file
 
 import 'package:OpenBreath/settings_provider.dart'; // Import the new settings provider
+import 'package:OpenBreath/l10n/app_localizations.dart';
 import 'package:OpenBreath/pinned_exercises_provider.dart'; // Import the new pinned exercises provider
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await loadBreathingExercises();
   runApp(
     MultiProvider(
       providers: [
@@ -29,6 +30,7 @@ class OpenBreathApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
 
     final lightTheme = ThemeData(
       brightness: Brightness.light,
@@ -57,11 +59,19 @@ class OpenBreathApp extends StatelessWidget {
     );
 
     return MaterialApp(
-      title: 'OpenBreath',
+      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
       themeMode: themeProvider.themeMode,
       theme: lightTheme,
       darkTheme: darkTheme,
+      locale: settingsProvider.locale,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       home: const BreathingExerciseScreen(),
     );
   }
@@ -79,6 +89,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
   final FocusNode _searchFocusNode = FocusNode();
   List<BreathingExercise> _filteredExercises = [];
   List<BreathingExercise> _pinnedExercises = [];
+  VoidCallback? _settingsListener;
 
   @override
   void initState() {
@@ -88,6 +99,16 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
     // Listen to changes in PinnedExercisesProvider
     Provider.of<PinnedExercisesProvider>(context, listen: false).addListener(_updatePinnedExercises);
     _updatePinnedExercises(); // Initial load of pinned exercises
+
+    // Initial load of exercises based on language
+    _loadExercisesForCurrentLanguage();
+
+    // Reload exercises when language changes
+    final settings = Provider.of<SettingsProvider>(context, listen: false);
+    _settingsListener = () {
+      _loadExercisesForCurrentLanguage();
+    };
+    settings.addListener(_settingsListener!);
 
     // Auto-select search bar if setting is enabled
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -103,6 +124,9 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
     _searchController.dispose();
     _searchFocusNode.dispose();
     Provider.of<PinnedExercisesProvider>(context, listen: false).removeListener(_updatePinnedExercises);
+    if (_settingsListener != null) {
+      Provider.of<SettingsProvider>(context, listen: false).removeListener(_settingsListener!);
+    }
     super.dispose();
   }
 
@@ -114,6 +138,23 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
           .toList();
       _performSearch(); // Re-filter exercises after pinned list changes
     });
+  }
+
+  Future<void> _loadExercisesForCurrentLanguage() async {
+    final settings = Provider.of<SettingsProvider>(context, listen: false);
+    switch (settings.languagePreference) {
+      case LanguagePreference.system:
+        await loadBreathingExercisesUsingSystemLocale();
+        break;
+      case LanguagePreference.en:
+        await loadBreathingExercisesForLanguageCode('en');
+        break;
+      case LanguagePreference.nl:
+        await loadBreathingExercisesForLanguageCode('nl');
+        break;
+    }
+    // Update pinned and filter after loading
+    _updatePinnedExercises();
   }
 
 
@@ -154,7 +195,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
                     controller: _searchController,
                     focusNode: _searchFocusNode,
                     decoration: InputDecoration(
-                      hintText: 'Search exercises...',
+                      hintText: AppLocalizations.of(context).searchHint,
                       border: InputBorder.none,
                       hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.5).round())),
                       suffixIcon: IconButton(
@@ -232,7 +273,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
                                   backgroundColor: Theme.of(context).colorScheme.primary, // Button background color
                                   foregroundColor: Theme.of(context).colorScheme.onPrimary, // Button text color
                                 ),
-                                child: const Text('Start'),
+                                child: Text(AppLocalizations.of(context).start),
                               ),
                             ],
                           ),
@@ -255,7 +296,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
                         ),
                         const SizedBox(height: 20),
                         Text(
-                          'No exercises found.',
+                          AppLocalizations.of(context).noExercisesFound,
                           style: TextStyle(fontSize: 24),
                         ),
                       ],

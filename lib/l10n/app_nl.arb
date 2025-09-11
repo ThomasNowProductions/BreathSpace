@@ -1,0 +1,21 @@
+{
+  "appTitle": "OpenBreath",
+  "searchHint": "Zoek oefeningen...",
+  "settings": "Instellingen",
+  "language": "Taal",
+  "languageSystem": "Systeemstandaard",
+  "languageEnglish": "Engels",
+  "languageDutch": "Nederlands",
+  "theme": "Thema",
+  "themeSystem": "Systeemstandaard",
+  "themeLight": "Licht",
+  "themeDark": "Donker",
+  "autoSelectSearchBar": "Zoekbalk automatisch selecteren",
+  "start": "Start",
+  "noExercisesFound": "Geen oefeningen gevonden.",
+  "inhale": "Inademen",
+  "exhale": "Uitademen",
+  "hold": "Vasthouden",
+  "close": "Sluiten",
+  "exerciseInvalid": "Oefening niet gevonden of ongeldig patroon."
+}

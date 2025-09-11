@@ -1,0 +1,21 @@
+{
+  "appTitle": "OpenBreath",
+  "searchHint": "Search exercises...",
+  "settings": "Settings",
+  "language": "Language",
+  "languageSystem": "System default",
+  "languageEnglish": "English",
+  "languageDutch": "Dutch",
+  "theme": "Theme",
+  "themeSystem": "System Default",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "autoSelectSearchBar": "Auto-select search bar",
+  "start": "Start",
+  "noExercisesFound": "No exercises found.",
+  "inhale": "Inhale",
+  "exhale": "Exhale",
+  "hold": "Hold",
+  "close": "Close",
+  "exerciseInvalid": "Exercise not found or invalid pattern."
+}

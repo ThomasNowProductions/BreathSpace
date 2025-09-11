@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:OpenBreath/l10n/app_localizations.dart';
 
 class ExerciseScreen extends StatefulWidget {
   final String pattern;
@@ -16,7 +17,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
   late Animation<double> _breatheAnimation;
   late AnimationController _bubbleAnimationController;
   late Animation<double> _bubbleAnimation;
-  String _instruction = 'Inhale';
+  String _instruction = '';
   int _currentCycle = 0;
   final int _totalCycles = 4; // For a 4-minute exercise (4-4-4-4 breathing, 16s per cycle, 15 cycles = 4 minutes)
 
@@ -93,14 +94,15 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
       double currentTime = _controller.value * totalDurationSeconds;
 
       setState(() {
+        final l10n = AppLocalizations.of(context);
         if (currentTime >= 0 && currentTime < inhale) {
-          _instruction = 'Inhale';
+          _instruction = l10n.inhale;
         } else if (hold1 > 0 && currentTime >= inhale && currentTime < (inhale + hold1)) {
-          _instruction = 'Hold';
+          _instruction = l10n.hold;
         } else if (currentTime >= (inhale + hold1) && currentTime < (inhale + hold1 + exhale)) {
-          _instruction = 'Exhale';
+          _instruction = l10n.exhale;
         } else if (hold2 > 0 && currentTime >= (inhale + hold1 + exhale) && currentTime <= totalDurationSeconds) {
-          _instruction = 'Hold';
+          _instruction = l10n.hold;
         }
         HapticFeedback.lightImpact(); // Apply haptic feedback once per state change
       });
@@ -137,7 +139,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'Exercise not found or invalid pattern.',
+                    AppLocalizations.of(context).exerciseInvalid,
                     style: TextStyle(fontSize: 24),
                   ),
                 ],
@@ -197,7 +199,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                       PopupMenuItem<String>(
                         value: 'close',
-                        child: Text('Close'),
+                        child: Text(AppLocalizations.of(context).close),
                       ),
                     ],
                   ),
