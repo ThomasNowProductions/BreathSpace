@@ -121,10 +121,9 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
 
     setState(() {
       _filteredExercises = breathingExercises.where((exercise) {
-        final isPinned = pinnedProvider.isPinned(exercise.title);
-        return !isPinned && (exercise.title.toLowerCase().contains(query) ||
+        return exercise.title.toLowerCase().contains(query) ||
             exercise.pattern.toLowerCase().contains(query) ||
-            exercise.intro.toLowerCase().contains(query));
+            exercise.intro.toLowerCase().contains(query);
       }).toList();
     });
   }
@@ -174,7 +173,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
       ),
       body: Column(
         children: [
-          if (_pinnedExercises.isNotEmpty)
+          if (_pinnedExercises.isNotEmpty && _searchController.text.isEmpty)
             SizedBox(
               height: 150, // Height for the pinned exercises row
               child: ListView.builder(
