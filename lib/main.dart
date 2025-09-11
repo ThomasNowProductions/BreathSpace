@@ -5,11 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:OpenBreath/theme_provider.dart';
 import 'package:OpenBreath/data.dart'; // Import the data file
 import 'package:OpenBreath/search_screen.dart'; // Import the search screen
+import 'package:OpenBreath/settings_provider.dart'; // Import the new settings provider
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
+        ChangeNotifierProvider(create: (context) => SettingsProvider()),
+      ],
       child: const OpenBreathApp(),
     ),
   );
@@ -67,164 +71,95 @@ class BreathingExerciseScreen extends StatefulWidget {
 }
 
 class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
-  late PageController _pageController;
+  final TextEditingController _searchController = TextEditingController();
+  final FocusNode _searchFocusNode = FocusNode();
+  List<BreathingExercise> _filteredExercises = [];
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 10000 * breathingExercises.length);
+    _filteredExercises = breathingExercises; // Initially show all exercises
+    _searchController.addListener(_performSearch);
+
+    // Auto-select search bar if setting is enabled
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
+      if (settingsProvider.autoSelectSearchBar) {
+        FocusScope.of(context).requestFocus(_searchFocusNode);
+      }
+    });
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _searchController.dispose();
+    _searchFocusNode.dispose();
     super.dispose();
+  }
+
+  void _performSearch() {
+    final query = _searchController.text.toLowerCase();
+    setState(() {
+      _filteredExercises = breathingExercises.where((exercise) {
+        return exercise.title.toLowerCase().contains(query) ||
+            exercise.pattern.toLowerCase().contains(query) ||
+            exercise.intro.toLowerCase().contains(query);
+      }).toList();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          PageView.builder(
-            controller: _pageController,
-            itemBuilder: (context, index) {
-              final exercise = breathingExercises[index % breathingExercises.length];
-              return Center(
-                child: SizedBox(
-                  height: 500.0, // Fixed height for the card
-                  width: 500.0, // Fixed width for the card
-                  child: Card(
-                    color: Theme.of(context).cardColor, // Theme-aware card background
-                    margin: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Distribute content vertically
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                exercise.title,
-                                style: TextStyle(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.onSurface,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              Text(
-                                exercise.pattern,
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.87).round()),
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                exercise.duration,
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.87).round()),
-                                ),
-                              ),
-                              const SizedBox(height: 40),
-                              Text(
-                                exercise.intro,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.87).round()),
-                                ),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => ExerciseScreen(pattern: exercise.pattern)),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                              padding: const EdgeInsets.all(40),
-                            ),
-                            child: const Text(
-                              'START',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+      appBar: AppBar(
+        title: TextField(
+          controller: _searchController,
+          focusNode: _searchFocusNode,
+          decoration: InputDecoration(
+            hintText: 'Search exercises...',
+            border: InputBorder.none,
+            hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.5).round())),
+          ),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 18),
+          cursorColor: Theme.of(context).colorScheme.onSurface,
+        ),
+        backgroundColor: Theme.of(context).cardColor,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings_outlined, size: 30, color: Theme.of(context).colorScheme.onSurface),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
               );
             },
           ),
-          Positioned(
-            top: 20,
-            left: 20, // Positioned at top-left
-            child: IconButton(
-              icon: Icon(Icons.search, size: 30, color: Theme.of(context).colorScheme.onSurface),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SearchScreen()),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            top: 20,
-            right: 20, // Changed from left to right
-            child: IconButton(
-              icon: Icon(Icons.settings, size: 30, color: Theme.of(context).colorScheme.onSurface),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SettingsScreen()),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).colorScheme.onSurface, size: 50),
-                  onPressed: () {
-                    _pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOut,
-                    );
-                  },
-                ),
-                const SizedBox(width: 50), // Space between buttons
-                IconButton(
-                  icon: Icon(Icons.arrow_forward_ios, color: Theme.of(context).colorScheme.onSurface, size: 50),
-                  onPressed: () {
-                    _pageController.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOut,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
         ],
+      ),
+      body: ListView.builder(
+        itemCount: _filteredExercises.length,
+        itemBuilder: (context, index) {
+          final exercise = _filteredExercises[index];
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: ListTile(
+              title: Text(exercise.title, style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
+              subtitle: Text(
+                '${exercise.pattern} - ${exercise.duration}\n${exercise.intro}',
+                style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.7).round())),
+              ),
+              isThreeLine: true,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ExerciseScreen(pattern: exercise.pattern),
+                  ),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }

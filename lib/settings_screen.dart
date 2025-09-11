@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:OpenBreath/theme_provider.dart';
+import 'package:OpenBreath/settings_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -8,6 +9,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,6 +41,13 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          SwitchListTile(
+            title: const Text('Auto-select search bar'),
+            value: settingsProvider.autoSelectSearchBar,
+            onChanged: (bool value) {
+              settingsProvider.setAutoSelectSearchBar(value);
+            },
           ),
         ],
       ),
