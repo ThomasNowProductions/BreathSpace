@@ -134,42 +134,45 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
       appBar: AppBar(
         titleSpacing: 0, // Remove default title spacing
         backgroundColor: Theme.of(context).scaffoldBackgroundColor, // Keep scaffold background for app bar itself
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings_outlined, size: 30, color: Theme.of(context).colorScheme.onSurface),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
-              );
-            },
-          ),
-        ],
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Apply card-like margin
-          child: Card(
-            margin: EdgeInsets.zero, // Card will handle its own internal padding
-            elevation: 0, // Remove card elevation if not desired for search bar
-            color: Theme.of(context).cardColor, // Match card background color
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0), // Apply rounded corners
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0), // Internal padding for text field
-              child: TextField(
-                controller: _searchController,
-                focusNode: _searchFocusNode,
-                decoration: InputDecoration(
-                  hintText: 'Search exercises...',
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.5).round())),
+        title: Column(
+          children: [
+            const SizedBox(height: 8.0), // Add space at the top
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Apply card-like margin
+              child: Card(
+                margin: EdgeInsets.zero, // Card will handle its own internal padding
+                elevation: 0, // Remove card elevation if not desired for search bar
+                color: Theme.of(context).cardColor, // Match card background color
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0), // Apply rounded corners
                 ),
-                style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 18),
-                cursorColor: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
-          ),
-        ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0), // Internal padding for text field
+                  child: TextField(
+                    controller: _searchController,
+                    focusNode: _searchFocusNode,
+                    decoration: InputDecoration(
+                      hintText: 'Search exercises...',
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.5).round())),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.settings_outlined, size: 24, color: Theme.of(context).colorScheme.onSurface),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const SettingsScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                    style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 18),
+                    cursorColor: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ), // Closing parenthesis for Card
+            ), // Closing parenthesis for Padding
+          ], // Closing bracket for children list
+        ), // Closing parenthesis for Column
       ),
       body: Column(
         children: [
