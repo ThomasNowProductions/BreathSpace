@@ -5,6 +5,7 @@ import 'package:OpenBreath/gemini_service.dart';
 import 'package:OpenBreath/exercise_detail_screen.dart';
 import 'package:OpenBreath/l10n/app_localizations.dart';
 import 'package:OpenBreath/theme_provider.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class GeminiExerciseScreen extends StatefulWidget {
   const GeminiExerciseScreen({super.key});
@@ -17,11 +18,59 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
   final TextEditingController _userInputController = TextEditingController();
   bool _isLoading = false;
   BreathingExercise? _recommendedExercise;
+  SpeechToText _speechToText = SpeechToText();
+  bool _isListening = false;
+  String _lastWords = '';
 
   @override
   void dispose() {
     _userInputController.dispose();
     super.dispose();
+  }
+
+  void _startListening() async {
+    bool available = await _speechToText.initialize(
+      onStatus: (status) {
+        setState(() {
+          _isListening = _speechToText.isListening;
+        });
+      },
+      onError: (error) {
+        setState(() {
+          _isListening = false;
+          _lastWords = 'Error: ${error.errorMsg}';
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Speech recognition error: ${error.errorMsg}')),
+        );
+      },
+    );
+
+    if (available) {
+      setState(() {
+        _isListening = true;
+      });
+      await _speechToText.listen(onResult: (result) {
+        setState(() {
+          _lastWords = result.recognizedWords;
+          _userInputController.text = _lastWords;
+        });
+      });
+    } else {
+      setState(() {
+        _isListening = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Speech recognition not available')),
+      );
+    }
+  }
+
+  void _stopListening() async {
+    await _speechToText.stop();
+    setState(() {
+      _isListening = false;
+    });
   }
 
   Future<void> _getRecommendation() async {
@@ -131,15 +180,27 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    suffixIcon: _isLoading
-                        ? const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : IconButton(
-                            icon: Icon(Icons.send, color: Theme.of(context).colorScheme.primary),
-                            onPressed: _getRecommendation,
-                          ),
+                    suffixIcon: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _isLoading
+                            ? const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: CircularProgressIndicator(strokeWidth: 2),
+                              )
+                            : IconButton(
+                                icon: Icon(_isListening ? Icons.mic_off : Icons.mic,
+                                    color: _isListening
+                                        ? Theme.of(context).colorScheme.primary
+                                        : Theme.of(context).colorScheme.onSurface.withOpacity(0.7)),
+                                onPressed: _isListening ? _stopListening : _startListening,
+                              ),
+                        IconButton(
+                          icon: Icon(Icons.send, color: Theme.of(context).colorScheme.primary),
+                          onPressed: _getRecommendation,
+                        ),
+                      ],
+                    ),
                   ),
                   onSubmitted: (_) => _getRecommendation(),
                   maxLines: 3,
