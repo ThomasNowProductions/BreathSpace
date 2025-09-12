@@ -95,6 +95,16 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7)),
+            onPressed: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+        ],
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -132,16 +142,6 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
                 maxLines: 3,
               ),
               const SizedBox(height: 20),
-              // Add a subtle settings icon
-              Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                  icon: Icon(Icons.settings_outlined, color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7)),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/settings');
-                  },
-                ),
-              ),
             ],
           ),
         ),
