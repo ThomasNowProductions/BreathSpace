@@ -113,4 +113,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get getStarted => 'Beginnen';
+
+  @override
+  String get promptCacheTitle => 'AI Prompt Cache';
+
+  @override
+  String get promptCacheSubtitle =>
+      'Gecachte reacties voor snellere aanbevelingen';
+
+  @override
+  String get promptCacheEntries => 'items';
+
+  @override
+  String get promptCacheClear => 'Cache wissen';
+
+  @override
+  String get promptCacheCleared => 'Prompt cache gewist';
 }

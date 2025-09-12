@@ -15,6 +15,7 @@ import 'package:OpenBreath/pinned_exercises_provider.dart';
 import 'intro_screen.dart';
 import 'package:OpenBreath/gemini_exercise_screen.dart';
 import 'package:OpenBreath/gemini_service.dart';
+import 'package:OpenBreath/prompt_cache_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {

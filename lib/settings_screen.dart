@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:OpenBreath/theme_provider.dart';
 import 'package:OpenBreath/settings_provider.dart';
 import 'package:OpenBreath/l10n/app_localizations.dart';
+import 'package:OpenBreath/prompt_cache_service.dart'; // Import prompt cache service
 import 'intro_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -117,6 +118,30 @@ class SettingsScreen extends StatelessWidget {
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => const IntroScreen()),
                 (route) => false,
+              );
+            },
+          ),
+          // Prompt Cache Management Section
+          const Divider(),
+          FutureBuilder<int>(
+            future: PromptCacheService.getCacheSize(),
+            builder: (context, snapshot) {
+              final cacheSize = snapshot.data ?? 0;
+              return ListTile(
+                title: Text(AppLocalizations.of(context).promptCacheTitle),
+                subtitle: Text('${AppLocalizations.of(context).promptCacheSubtitle} ($cacheSize ${AppLocalizations.of(context).promptCacheEntries})'),
+                trailing: ElevatedButton(
+                  onPressed: () async {
+                    await PromptCacheService.clearCache();
+                    // Show a snackbar to confirm
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(AppLocalizations.of(context).promptCacheCleared)),
+                      );
+                    }
+                  },
+                  child: Text(AppLocalizations.of(context).promptCacheClear),
+                ),
               );
             },
           ),

@@ -33,5 +33,10 @@
   "replayIntro": "Replay Intro",
   "welcomeTitle": "Welcome to OpenBreath",
   "welcomeSubtitle": "The no-nonsense breathing app for calmth and sleep.",
-  "getStarted": "Get Started"
+  "getStarted": "Get Started",
+  "promptCacheTitle": "AI Prompt Cache",
+  "promptCacheSubtitle": "Cached responses for faster recommendations",
+  "promptCacheEntries": "entries",
+  "promptCacheClear": "Clear Cache",
+  "promptCacheCleared": "Prompt cache cleared"
 }

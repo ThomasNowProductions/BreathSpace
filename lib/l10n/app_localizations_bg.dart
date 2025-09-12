@@ -115,4 +115,20 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get getStarted => 'Първи стъпки';
+
+  @override
+  String get promptCacheTitle => 'AI Prompt Cache';
+
+  @override
+  String get promptCacheSubtitle =>
+      'Cached responses for faster recommendations';
+
+  @override
+  String get promptCacheEntries => 'entries';
+
+  @override
+  String get promptCacheClear => 'Clear Cache';
+
+  @override
+  String get promptCacheCleared => 'Prompt cache cleared';
 }

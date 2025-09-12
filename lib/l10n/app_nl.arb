@@ -28,5 +28,10 @@
   "replayIntro": "Intro opnieuw afspelen",
   "welcomeTitle": "Welkom bij OpenBreath",
   "welcomeSubtitle": "De no-nonsense ademhalingsapp voor rust en slaap.",
-  "getStarted": "Beginnen"
+  "getStarted": "Beginnen",
+  "promptCacheTitle": "AI Prompt Cache",
+  "promptCacheSubtitle": "Gecachte reacties voor snellere aanbevelingen",
+  "promptCacheEntries": "items",
+  "promptCacheClear": "Cache wissen",
+  "promptCacheCleared": "Prompt cache gewist"
 }

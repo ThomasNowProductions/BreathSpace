@@ -3,28 +3,48 @@
     "languageSpanish",
     "languageItalian",
     "languageGerman",
-    "languageChinese"
+    "languageChinese",
+    "promptCacheTitle",
+    "promptCacheSubtitle",
+    "promptCacheEntries",
+    "promptCacheClear",
+    "promptCacheCleared"
   ],
 
   "de": [
     "languageSpanish",
     "languageItalian",
     "languageChinese",
-    "languageBulgarian"
+    "languageBulgarian",
+    "promptCacheTitle",
+    "promptCacheSubtitle",
+    "promptCacheEntries",
+    "promptCacheClear",
+    "promptCacheCleared"
   ],
 
   "es": [
     "languageItalian",
     "languageGerman",
     "languageChinese",
-    "languageBulgarian"
+    "languageBulgarian",
+    "promptCacheTitle",
+    "promptCacheSubtitle",
+    "promptCacheEntries",
+    "promptCacheClear",
+    "promptCacheCleared"
   ],
 
   "it": [
     "languageSpanish",
     "languageGerman",
     "languageChinese",
-    "languageBulgarian"
+    "languageBulgarian",
+    "promptCacheTitle",
+    "promptCacheSubtitle",
+    "promptCacheEntries",
+    "promptCacheClear",
+    "promptCacheCleared"
   ],
 
   "nl": [
@@ -39,6 +59,11 @@
     "languageSpanish",
     "languageItalian",
     "languageGerman",
-    "languageBulgarian"
+    "languageBulgarian",
+    "promptCacheTitle",
+    "promptCacheSubtitle",
+    "promptCacheEntries",
+    "promptCacheClear",
+    "promptCacheCleared"
   ]
 }

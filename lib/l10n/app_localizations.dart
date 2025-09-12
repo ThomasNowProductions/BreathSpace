@@ -317,6 +317,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get Started'**
   String get getStarted;
+
+  /// No description provided for @promptCacheTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Prompt Cache'**
+  String get promptCacheTitle;
+
+  /// No description provided for @promptCacheSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cached responses for faster recommendations'**
+  String get promptCacheSubtitle;
+
+  /// No description provided for @promptCacheEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'entries'**
+  String get promptCacheEntries;
+
+  /// No description provided for @promptCacheClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Cache'**
+  String get promptCacheClear;
+
+  /// No description provided for @promptCacheCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Prompt cache cleared'**
+  String get promptCacheCleared;
 }
 
 class _AppLocalizationsDelegate
