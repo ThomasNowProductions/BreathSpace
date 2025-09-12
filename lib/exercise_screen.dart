@@ -6,6 +6,7 @@ import 'package:OpenBreath/data.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:OpenBreath/settings_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class ExerciseScreen extends StatefulWidget {
   final BreathingExercise exercise;
@@ -65,6 +66,9 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
   @override
   void initState() {
     super.initState();
+    
+    // Keep the screen awake during the exercise
+    WakelockPlus.enable();
     
     // Initialize stages
     if (widget.exercise.hasStages) {
@@ -248,6 +252,8 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     _bubbleAnimationController.dispose();
     _soundEffectPlayer.dispose();
     _musicPlayer.dispose();
+    // Disable wakelock when exercise is finished
+    WakelockPlus.disable();
     super.dispose();
   }
 
