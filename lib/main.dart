@@ -292,7 +292,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          ':-',
+                          ':-(',
                           style: TextStyle(fontSize: 64),
                         ),
                         const SizedBox(height: 20),
