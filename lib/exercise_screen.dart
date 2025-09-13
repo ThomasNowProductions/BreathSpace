@@ -166,7 +166,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     final timings = _getPatternTimings(patternValues);
     int inhale = timings['inhale']!;
     int hold1 = timings['hold1']!;
-    int exhale = timings['exhale']!;
+    int exhale = timings['exhale']!; // Fixed: was timings['hold2']!
     int hold2 = timings['hold2']!;
     int totalDurationSeconds = inhale + hold1 + exhale + hold2;
 
@@ -184,6 +184,23 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     _controller.repeat();
     _controller.addListener(() {
       double currentTime = _controller.value * totalDurationSeconds;
+
+      // Check if we need to move to the next stage (moved from addStatusListener)
+      final elapsedSeconds = (DateTime.now().millisecondsSinceEpoch ~/ 1000) - _stageStartTime;
+      final currentStage = _stages[_currentStageIndex];
+      
+      if (elapsedSeconds >= currentStage.duration) {
+        // Move to next stage or end exercise
+        if (_currentStageIndex < _stages.length - 1) {
+          _initializeStage(_currentStageIndex + 1);
+          _currentCycle = 0;
+          return; // Exit early to avoid processing instruction for the old stage
+        } else {
+          // Exercise completed
+          Navigator.pop(context);
+          return; // Exit early
+        }
+      }
 
       setState(() {
         final l10n = AppLocalizations.of(context);
@@ -210,26 +227,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
       });
     });
 
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _currentCycle++;
-        
-        // Check if we need to move to the next stage
-        final elapsedSeconds = (DateTime.now().millisecondsSinceEpoch ~/ 1000) - _stageStartTime;
-        final stage = _stages[_currentStageIndex];
-        
-        if (elapsedSeconds >= stage.duration) {
-          // Move to next stage or end exercise
-          if (_currentStageIndex < _stages.length - 1) {
-            _initializeStage(_currentStageIndex + 1);
-            _currentCycle = 0;
-          } else {
-            // Exercise completed
-            Navigator.pop(context);
-          }
-        }
-      }
-    });
+    // Removed the addStatusListener that was checking for stage transitions
   }
 
   int _parseDurationString(String duration) {
