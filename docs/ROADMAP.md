@@ -5,55 +5,64 @@ This document outlines the future plans and features for the OpenBreath project.
 ## Table of Contents
 
 - [Vision](#vision)
-- [Short Term (Next 3 Months)](#short-term-next-3-months)
-- [Medium Term (3-6 Months)](#medium-term-3-6-months)
-- [Long Term (6+ Months)](#long-term-6-months)
-- [Potential Features](#potential-features)
+- [Roadmap](#roadmap)
 
 ## Vision
 
 OpenBreath aims to become the most comprehensive and user-friendly breathing exercise application, helping people reduce stress, improve focus, and enhance overall well-being through guided breathing techniques.
 
-## Short Term (Next 3 Months)
+## Roadmap
 
-### Q4 2025
+### High Priority
 
 - [ ] Add statistics tracking for exercise completion
 - [ ] Implement push notifications for daily reminders
-- [ ] Add more breathing exercise patterns
+- [x] Add more breathing exercise patterns
 - [ ] Improve accessibility features
-- [ ] Add dark mode support
-- [ ] Expand language support to 5+ languages
+- [x] Add dark mode support
+- [x] Expand language support to 5+ languages
 
-## Medium Term (3-6 Months)
-
-### Q1 2026
+### Medium Priority
 
 - [ ] Add community features (sharing exercises)
 - [ ] Implement personalized exercise recommendations
 - [ ] Add integration with health apps (Apple Health, Google Fit)
-- [ ] Create web version of the application
-- [ ] Add offline mode for all exercises
+- [x] Create web version of the application
+- [x] Add offline mode for all exercises
+- [ ] Add breathing exercise courses/programs
+- [ ] Implement voice-guided exercises
+- [ ] Add integration with music streaming services
 
-## Long Term (6+ Months)
-
-### Q2+ 2026
+### Long Term
 
 - [ ] Add biometric integration (heart rate monitoring)
 - [ ] Implement AI-powered personalized breathing programs
 - [ ] Add meditation and mindfulness exercises
 - [ ] Create companion wearable app
 - [ ] Develop research partnerships for effectiveness studies
+- [ ] Add AR/VR breathing visualization experiences
+- [ ] Add social features (challenges, leaderboards)
+- [ ] Add corporate wellness program version
 
-## Potential Features
+### Future Ideas
 
 These features are under consideration but not yet prioritized:
 
-- Social features (challenges, leaderboards)
-- Breathing exercise courses/programs
-- Integration with music streaming services
-- Voice-guided exercises
-- AR/VR breathing visualization experiences
-- Biofeedback integration
-- Corporate wellness program version
+- Advanced progress tracking and analytics
+- Breathing technique tutorials with visual guides
+- Custom exercise creation tool
+- Breathing pattern editor
+- Integration with smart home devices (e.g., smart lights that pulse with breathing)
+- Sleep tracking integration
+- Stress level assessment tools
+- Breathing exercise challenges and achievements
+- Multi-user family accounts
+- Export/import of exercise data
+- Breathing exercise scheduling
+- Integration with calendar apps
+- Haptic feedback for mobile devices
+- Accessibility enhancements for visually impaired users
+- Breathing exercise reminders based on location (e.g., before meetings)
+- Gamification elements (badges, points, levels)
+- Integration with productivity apps
 - Research data collection (with user consent)
