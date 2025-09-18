@@ -1,4 +1,10 @@
 {
+  "ar": [
+    "voiceGuide",
+    "voiceGuideOff",
+    "voiceGuideThomas"
+  ],
+
   "bg": [
     "languageSpanish",
     "languageItalian",
@@ -8,7 +14,10 @@
     "languageJapanese",
     "languagePortuguese",
     "languageRussian",
-    "languageArabic"
+    "languageArabic",
+    "voiceGuide",
+    "voiceGuideOff",
+    "voiceGuideThomas"
   ],
 
   "de": [
@@ -43,6 +52,12 @@
     "languageArabic"
   ],
 
+  "ja": [
+    "voiceGuide",
+    "voiceGuideOff",
+    "voiceGuideThomas"
+  ],
+
   "nl": [
     "languageSpanish",
     "languageItalian",
@@ -54,6 +69,18 @@
     "languagePortuguese",
     "languageRussian",
     "languageArabic"
+  ],
+
+  "pt": [
+    "voiceGuide",
+    "voiceGuideOff",
+    "voiceGuideThomas"
+  ],
+
+  "ru": [
+    "voiceGuide",
+    "voiceGuideOff",
+    "voiceGuideThomas"
   ],
 
   "zh": [

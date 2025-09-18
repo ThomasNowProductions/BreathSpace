@@ -109,6 +109,15 @@ class AppLocalizationsIt extends AppLocalizations {
   String get soundEffects => 'Effetti sonori';
 
   @override
+  String get voiceGuide => 'Guida vocale';
+
+  @override
+  String get voiceGuideOff => 'Spento';
+
+  @override
+  String get voiceGuideThomas => 'Thomas';
+
+  @override
   String get music => 'Musica';
 
   @override

@@ -109,6 +109,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get soundEffects => 'Звуковые эффекты';
 
   @override
+  String get voiceGuide => 'Voice Guide';
+
+  @override
+  String get voiceGuideOff => 'Off';
+
+  @override
+  String get voiceGuideThomas => 'Thomas';
+
+  @override
   String get music => 'Музыка';
 
   @override

@@ -108,6 +108,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get soundEffects => 'التأثيرات الصوتية';
 
   @override
+  String get voiceGuide => 'Voice Guide';
+
+  @override
+  String get voiceGuideOff => 'Off';
+
+  @override
+  String get voiceGuideThomas => 'Thomas';
+
+  @override
   String get music => 'الموسيقى';
 
   @override

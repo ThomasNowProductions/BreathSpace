@@ -108,6 +108,15 @@ class AppLocalizationsNl extends AppLocalizations {
   String get soundEffects => 'Geluidseffecten';
 
   @override
+  String get voiceGuide => 'Stemgids';
+
+  @override
+  String get voiceGuideOff => 'Uit';
+
+  @override
+  String get voiceGuideThomas => 'Thomas';
+
+  @override
   String get music => 'Muziek';
 
   @override

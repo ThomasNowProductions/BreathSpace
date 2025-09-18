@@ -110,6 +110,15 @@ class AppLocalizationsBg extends AppLocalizations {
   String get soundEffects => 'Звукови ефекти';
 
   @override
+  String get voiceGuide => 'Voice Guide';
+
+  @override
+  String get voiceGuideOff => 'Off';
+
+  @override
+  String get voiceGuideThomas => 'Thomas';
+
+  @override
   String get music => 'Музика';
 
   @override

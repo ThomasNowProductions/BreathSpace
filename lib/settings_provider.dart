@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum LanguagePreference { system, ar, bg, de, en, es, fr, it, ja, nl, pt, ru, zh }
 enum MusicMode { off, nature, lofi }
+enum VoiceGuideMode { off, thomas }
 
 class SettingsProvider extends ChangeNotifier {
   bool _autoSelectSearchBar = false;
@@ -10,12 +11,14 @@ class SettingsProvider extends ChangeNotifier {
   bool _soundEffectsEnabled = true;
   MusicMode _musicMode = MusicMode.off;
   bool _useListView = false; // New setting for list view toggle
+  VoiceGuideMode _voiceGuideMode = VoiceGuideMode.off;
 
   bool get autoSelectSearchBar => _autoSelectSearchBar;
   LanguagePreference get languagePreference => _languagePreference;
   bool get soundEffectsEnabled => _soundEffectsEnabled;
   MusicMode get musicMode => _musicMode;
   bool get useListView => _useListView; // Getter for list view setting
+  VoiceGuideMode get voiceGuideMode => _voiceGuideMode;
 
   Locale? get locale {
     switch (_languagePreference) {
@@ -57,6 +60,9 @@ class SettingsProvider extends ChangeNotifier {
     _autoSelectSearchBar = prefs.getBool('autoSelectSearchBar') ?? false;
     _soundEffectsEnabled = prefs.getBool('soundEffectsEnabled') ?? true;
     _useListView = prefs.getBool('useListView') ?? false; // Load list view setting
+    _voiceGuideMode = prefs.getString('voiceGuideMode') == 'thomas' 
+        ? VoiceGuideMode.thomas 
+        : VoiceGuideMode.off;
     final langString = prefs.getString('languagePreference');
     if (langString != null) {
       switch (langString) {
@@ -199,6 +205,20 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('useListView', value);
+  }
+
+  Future<void> setVoiceGuideMode(VoiceGuideMode mode) async {
+    _voiceGuideMode = mode;
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    switch (mode) {
+      case VoiceGuideMode.off:
+        await prefs.setString('voiceGuideMode', 'off');
+        break;
+      case VoiceGuideMode.thomas:
+        await prefs.setString('voiceGuideMode', 'thomas');
+        break;
+    }
   }
 
 }

@@ -108,6 +108,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get soundEffects => '音效';
 
   @override
+  String get voiceGuide => '语音指导';
+
+  @override
+  String get voiceGuideOff => '关';
+
+  @override
+  String get voiceGuideThomas => '托马斯';
+
+  @override
   String get music => '音乐';
 
   @override

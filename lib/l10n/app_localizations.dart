@@ -316,6 +316,24 @@ abstract class AppLocalizations {
   /// **'Sound Effects'**
   String get soundEffects;
 
+  /// No description provided for @voiceGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice Guide'**
+  String get voiceGuide;
+
+  /// No description provided for @voiceGuideOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get voiceGuideOff;
+
+  /// No description provided for @voiceGuideThomas.
+  ///
+  /// In en, this message translates to:
+  /// **'Thomas'**
+  String get voiceGuideThomas;
+
   /// No description provided for @music.
   ///
   /// In en, this message translates to:

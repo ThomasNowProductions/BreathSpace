@@ -226,7 +226,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
         if (currentTime >= 0 && currentTime < inhale) {
           _instruction = l10n.inhale;
           // Play sound effect only once when entering inhale phase
-          if (settings.soundEffectsEnabled && _lastInstruction != _instruction) {
+          if (settings.voiceGuideMode == VoiceGuideMode.thomas && _lastInstruction != _instruction) {
             _soundEffectPlayer.play(AssetSource('sounds/in.wav'));
             _inhaleSoundPlayed = true;
             _holdSoundPlayed = false; // Reset hold sound tracking
@@ -234,7 +234,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
         } else if (hold1 > 0 && currentTime >= inhale && currentTime < (inhale + hold1)) {
           _instruction = l10n.hold;
           // Play sound effect only once when entering first hold phase
-          if (settings.soundEffectsEnabled && _lastInstruction != _instruction) {
+          if (settings.voiceGuideMode == VoiceGuideMode.thomas && _lastInstruction != _instruction) {
             _soundEffectPlayer.play(AssetSource('sounds/hold.wav'));
             _holdSoundPlayed = true;
             _inhaleSoundPlayed = false; // Reset inhale sound tracking
@@ -242,7 +242,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
         } else if (currentTime >= (inhale + hold1) && currentTime < (inhale + hold1 + exhale)) {
           _instruction = l10n.exhale;
           // Play sound effect only once when entering exhale phase
-          if (settings.soundEffectsEnabled && _lastInstruction != _instruction) {
+          if (settings.voiceGuideMode == VoiceGuideMode.thomas && _lastInstruction != _instruction) {
             _soundEffectPlayer.play(AssetSource('sounds/out.wav'));
             _exhaleSoundPlayed = true;
             _holdSoundPlayed = false; // Reset hold sound tracking
@@ -250,7 +250,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
         } else if (hold2 > 0 && currentTime >= (inhale + hold1 + exhale) && currentTime <= totalDurationSeconds) {
           _instruction = l10n.hold;
           // Play sound effect only once when entering second hold phase
-          if (settings.soundEffectsEnabled && _lastInstruction != _instruction) {
+          if (settings.voiceGuideMode == VoiceGuideMode.thomas && _lastInstruction != _instruction) {
             _soundEffectPlayer.play(AssetSource('sounds/hold.wav'));
             _holdSoundPlayed = true;
             _exhaleSoundPlayed = false; // Reset exhale sound tracking
