@@ -139,12 +139,26 @@ class SettingsScreen extends StatelessWidget {
               ],
             ),
           ),
-          SwitchListTile(
-            title: Text(AppLocalizations.of(context).useListView),
-            value: settingsProvider.useListView,
-            onChanged: (bool value) {
-              settingsProvider.setUseListView(value);
-            },
+          ListTile(
+            title: Text("View Mode"),
+            trailing: DropdownButton<ViewMode>(
+              value: settingsProvider.viewMode,
+              onChanged: (ViewMode? newValue) {
+                if (newValue != null) {
+                  settingsProvider.setViewMode(newValue);
+                }
+              },
+              items: <DropdownMenuItem<ViewMode>>[
+                DropdownMenuItem<ViewMode>(
+                  value: ViewMode.list,
+                  child: Text("List View"),
+                ),
+                DropdownMenuItem<ViewMode>(
+                  value: ViewMode.ai,
+                  child: Text("AI Mode"),
+                ),
+              ],
+            ),
           ),
           ListTile(
             title: Text(AppLocalizations.of(context).music),

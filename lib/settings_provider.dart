@@ -4,21 +4,22 @@ import 'package:shared_preferences/shared_preferences.dart';
 enum LanguagePreference { system, ar, bg, de, en, es, fr, it, ja, nl, pt, ru, zh }
 enum MusicMode { off, nature, lofi }
 enum VoiceGuideMode { off, thomas }
+enum ViewMode { list, ai }
 
 class SettingsProvider extends ChangeNotifier {
   bool _autoSelectSearchBar = false;
   LanguagePreference _languagePreference = LanguagePreference.system;
   bool _soundEffectsEnabled = true;
   MusicMode _musicMode = MusicMode.off;
-  bool _useListView = false; // New setting for list view toggle
   VoiceGuideMode _voiceGuideMode = VoiceGuideMode.off;
+  ViewMode _viewMode = ViewMode.list;
 
   bool get autoSelectSearchBar => _autoSelectSearchBar;
   LanguagePreference get languagePreference => _languagePreference;
   bool get soundEffectsEnabled => _soundEffectsEnabled;
   MusicMode get musicMode => _musicMode;
-  bool get useListView => _useListView; // Getter for list view setting
   VoiceGuideMode get voiceGuideMode => _voiceGuideMode;
+  ViewMode get viewMode => _viewMode;
 
   Locale? get locale {
     switch (_languagePreference) {
@@ -59,7 +60,8 @@ class SettingsProvider extends ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     _autoSelectSearchBar = prefs.getBool('autoSelectSearchBar') ?? false;
     _soundEffectsEnabled = prefs.getBool('soundEffectsEnabled') ?? true;
-    _useListView = prefs.getBool('useListView') ?? false; // Load list view setting
+    final viewModeString = prefs.getString('viewMode') ?? 'list';
+    _viewMode = viewModeString == 'ai' ? ViewMode.ai : ViewMode.list;
     _voiceGuideMode = prefs.getString('voiceGuideMode') == 'thomas' 
         ? VoiceGuideMode.thomas 
         : VoiceGuideMode.off;
@@ -200,11 +202,11 @@ class SettingsProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> setUseListView(bool value) async {
-    _useListView = value;
+  Future<void> setViewMode(ViewMode mode) async {
+    _viewMode = mode;
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('useListView', value);
+    await prefs.setString('viewMode', mode == ViewMode.ai ? 'ai' : 'list');
   }
 
   Future<void> setVoiceGuideMode(VoiceGuideMode mode) async {
