@@ -1,6 +1,7 @@
 {
   "appTitle": "OpenBreath",
-  "searchHint": "Rechercher des exercices...",
+  "searchHint": "Rechercher par titre, motif ou introduction",
+  "progressive": "Progressif",
   "settings": "Paramètres",
   "language": "Langue",
   "languageSystem": "Par défaut du système",

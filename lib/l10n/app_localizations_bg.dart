@@ -12,7 +12,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get appTitle => 'OpenBreath';
 
   @override
-  String get searchHint => 'Търсене на упражнения...';
+  String get searchHint => 'Търсене по заглавие, модел или въведение';
+
+  @override
+  String get progressive => 'Прогресивен';
 
   @override
   String get settings => 'Настройки';

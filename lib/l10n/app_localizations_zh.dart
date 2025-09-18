@@ -12,7 +12,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appTitle => 'OpenBreath';
 
   @override
-  String get searchHint => '搜索练习...';
+  String get searchHint => '按标题、模式或简介搜索';
+
+  @override
+  String get progressive => '渐进式';
 
   @override
   String get settings => '设置';

@@ -15,6 +15,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get searchHint => 'Search exercises...';
 
   @override
+  String get progressive => 'Progressive';
+
+  @override
   String get settings => 'Settings';
 
   @override

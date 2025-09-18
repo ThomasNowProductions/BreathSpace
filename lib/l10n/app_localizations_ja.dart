@@ -15,6 +15,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get searchHint => 'エクササイズを検索...';
 
   @override
+  String get progressive => 'プログレッシブ';
+
+  @override
   String get settings => '設定';
 
   @override

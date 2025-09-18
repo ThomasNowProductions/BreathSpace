@@ -130,6 +130,12 @@ abstract class AppLocalizations {
   /// **'Search exercises...'**
   String get searchHint;
 
+  /// No description provided for @progressive.
+  ///
+  /// In en, this message translates to:
+  /// **'Progressive'**
+  String get progressive;
+
   /// No description provided for @settings.
   ///
   /// In en, this message translates to:

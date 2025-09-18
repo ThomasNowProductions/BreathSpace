@@ -15,6 +15,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get searchHint => 'Zoek oefeningen...';
 
   @override
+  String get progressive => 'Progressief';
+
+  @override
   String get settings => 'Instellingen';
 
   @override

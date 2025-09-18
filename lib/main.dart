@@ -222,6 +222,17 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
     });
   }
 
+  String _getTotalDuration(BreathingExercise exercise) {
+    if (!exercise.hasStages) {
+      return exercise.duration;
+    }
+    int totalSeconds = 0;
+    for (var stage in exercise.stages!) {
+      totalSeconds += stage.duration;
+    }
+    return '${(totalSeconds / 60).ceil()} min';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -303,7 +314,16 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                exercise.pattern,
+                                exercise.hasStages ? AppLocalizations.of(context).progressive : exercise.pattern,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.7).round()),
+                                  fontSize: 16,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                exercise.hasStages ? _getTotalDuration(exercise) : exercise.duration,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.7).round()),
                                   fontSize: 16,
@@ -366,7 +386,9 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> {
                           child: ListTile(
                             title: Text(exercise.title, style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
                             subtitle: Text(
-                              '${exercise.pattern} - ${exercise.duration}\n${exercise.intro}',
+                              exercise.hasStages
+                                  ? '${AppLocalizations.of(context).progressive} - ${_getTotalDuration(exercise)}\n${exercise.intro}'
+                                  : '${exercise.pattern} - ${exercise.duration}\n${exercise.intro}',
                               style: TextStyle(color: Theme.of(context).colorScheme.onSurface.withAlpha((255 * 0.7).round())),
                             ),
                             isThreeLine: true,

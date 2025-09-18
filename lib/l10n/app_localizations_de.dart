@@ -15,6 +15,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get searchHint => 'Übungen suchen...';
 
   @override
+  String get progressive => 'Progressiv';
+
+  @override
   String get settings => 'Einstellungen';
 
   @override

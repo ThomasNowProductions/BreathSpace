@@ -1,6 +1,7 @@
 {
   "appTitle": "OpenBreath",
-  "searchHint": "搜索练习...",
+  "searchHint": "按标题、模式或简介搜索",
+  "progressive": "渐进式",
   "settings": "设置",
   "language": "语言",
   "languageSystem": "系统默认",

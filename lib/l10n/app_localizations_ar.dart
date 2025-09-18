@@ -15,6 +15,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get searchHint => 'البحث عن تمارين...';
 
   @override
+  String get progressive => 'تدريجي';
+
+  @override
   String get settings => 'الإعدادات';
 
   @override

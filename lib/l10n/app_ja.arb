@@ -1,6 +1,7 @@
 {
   "appTitle": "OpenBreath",
   "searchHint": "エクササイズを検索...",
+  "progressive": "プログレッシブ",
   "settings": "設定",
   "language": "言語",
   "languageSystem": "システムデフォルト",

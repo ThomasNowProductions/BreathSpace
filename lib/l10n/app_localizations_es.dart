@@ -15,6 +15,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get searchHint => 'Buscar ejercicios...';
 
   @override
+  String get progressive => 'Progresivo';
+
+  @override
   String get settings => 'Ajustes';
 
   @override
