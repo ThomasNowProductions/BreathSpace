@@ -75,4 +75,57 @@ If the user's request is completely unrelated to breathing exercises, respond wi
       return null;
     }
   }
+
+  Future<String?> processBrainfartText(String brainfartText) async {
+    if (_apiKey == 'YOUR_GEMINI_API_KEY' || _apiKey.isEmpty) {
+      print('Gemini API Key is not set. Please set your API key in lib/gemini_service.dart');
+      return null;
+    }
+
+    final prompt = '''
+Convert the following spoken thoughts during a breathing exercise into a clean, structured bullet-point to-do list.
+Remove any irrelevant content and focus only on actionable items.
+
+Spoken thoughts:
+"$brainfartText"
+
+Output ONLY a JSON object in this exact format, with no additional text, markdown, or explanation:
+{
+  "todos": [
+    "First to-do item",
+    "Second to-do item",
+    "Third to-do item"
+  ]
+}
+''';
+
+    try {
+      final response = await http.post(
+        Uri.parse('$_apiUrl?key=$_apiKey'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'contents': [
+            {
+              'parts': [
+                {'text': prompt}
+              ]
+            }
+          ]
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        print('Gemini API Raw Response: ${response.body}'); // Debugging line
+        final String? result = jsonResponse['candidates']?[0]['content']?['parts']?[0]?['text'];
+        return result?.trim();
+      } else {
+        print('Gemini API Error: ${response.statusCode} - ${response.body}');
+        return null;
+      }
+    } catch (e) {
+      print('Error calling Gemini API: $e');
+      return null;
+    }
+  }
 }

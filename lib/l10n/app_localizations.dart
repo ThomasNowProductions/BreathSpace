@@ -465,6 +465,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Link copied to clipboard'**
   String get linkCopied;
+
+  /// No description provided for @brainfartTodo.
+  ///
+  /// In en, this message translates to:
+  /// **'Brainfart To-Do'**
+  String get brainfartTodo;
 }
 
 class _AppLocalizationsDelegate

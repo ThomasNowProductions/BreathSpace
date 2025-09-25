@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:OpenBreath/l10n/app_localizations.dart';
 import 'package:OpenBreath/data.dart';
 import 'package:OpenBreath/exercise_finished_screen.dart';
@@ -8,6 +9,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:OpenBreath/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:speech_to_text/speech_to_text.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 // Enum to track the current breathing phase
 enum BreathingPhase { inhale, hold1, exhale, hold2 }
@@ -44,6 +47,12 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
 
   final AudioPlayer _soundEffectPlayer = AudioPlayer();
   final AudioPlayer _musicPlayer = AudioPlayer();
+  
+  // Speech-to-text variables
+  final SpeechToText _speechToText = SpeechToText();
+  bool _speechEnabled = false;
+  bool _isListening = false;
+  String _brainfartText = '';
 
   List<int> _parsePattern(String pattern) {
     return pattern.split('-').map(int.parse).toList();
@@ -98,6 +107,9 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
       ];
     }
     
+    // Request microphone permission and initialize speech-to-text
+    _initSpeech();
+    
     try {
       // Initialize controllers
       _controller = AnimationController(vsync: this, duration: Duration.zero);
@@ -107,6 +119,87 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     } catch (e) {
       setState(() {
         _patternInvalid = true;
+      });
+    }
+  }
+
+  void _initSpeech() async {
+    // Check if we're on a supported platform for speech-to-text
+    if (!['android', 'ios'].contains(defaultTargetPlatform)) {
+      print('Speech-to-text not supported on this platform: $defaultTargetPlatform');
+      setState(() {
+        _speechEnabled = false;
+      });
+      return;
+    }
+    
+    print('Requesting microphone permission...');
+    try {
+      // Request microphone permission on supported platforms
+      var status = await Permission.microphone.request();
+      if (status.isGranted) {
+        print('Microphone permission granted');
+        // Initialize speech-to-text
+        _speechEnabled = await _speechToText.initialize(
+          onStatus: (status) {
+            print('Speech status changed: $status');
+            setState(() {
+              _isListening = _speechToText.isListening;
+            });
+          },
+          onError: (error) {
+            print('Speech recognition error: $error');
+            setState(() {
+              _isListening = false;
+              _speechEnabled = false;
+            });
+          },
+        );
+        
+        // Start listening if initialization was successful
+        if (_speechEnabled) {
+          print('Speech recognition initialized, starting listening...');
+          _startListening();
+        } else {
+          print('Failed to initialize speech recognition');
+        }
+      } else {
+        print('Microphone permission denied');
+        setState(() {
+          _speechEnabled = false;
+        });
+      }
+    } catch (e) {
+      print('Error initializing speech recognition: $e');
+      setState(() {
+        _speechEnabled = false;
+      });
+    }
+  }
+
+  void _startListening() async {
+    if (_speechEnabled && !_isListening) {
+      await _speechToText.listen(
+        onResult: (result) {
+          print('Speech recognition result: ${result.recognizedWords}');
+          setState(() {
+            _brainfartText = result.recognizedWords;
+          });
+        },
+        localeId: 'en_US', // Default to English, could be made configurable
+      );
+      setState(() {
+        _isListening = true;
+      });
+      print('Started listening for speech');
+    }
+  }
+
+  void _stopListening() async {
+    if (_isListening) {
+      await _speechToText.stop();
+      setState(() {
+        _isListening = false;
       });
     }
   }
@@ -284,6 +377,11 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     if (_exerciseCompleted) return;
     _exerciseCompleted = true;
     
+    // Stop speech recognition
+    _stopListening();
+    
+    print('Brainfart text: $_brainfartText');
+    
     // Fade out music before navigating away
     final settings = Provider.of<SettingsProvider>(context, listen: false);
     if (settings.musicMode != MusicMode.off) {
@@ -292,7 +390,11 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     
     // Navigate back after fade out is complete
     if (context.mounted) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const ExerciseFinishedScreen()));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => ExerciseFinishedScreen(brainfartText: _brainfartText),
+        ),
+      );
     }
   }
 
@@ -317,6 +419,8 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     _soundEffectPlayer.stop();
     _soundEffectPlayer.dispose();
     _musicPlayer.dispose();
+    // Stop speech recognition
+    _stopListening();
     // Disable wakelock when exercise is finished
     WakelockPlus.disable();
     super.dispose();

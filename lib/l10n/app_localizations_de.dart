@@ -182,4 +182,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get linkCopied => 'Link copied to clipboard';
+
+  @override
+  String get brainfartTodo => 'Brainfart To-Do';
 }

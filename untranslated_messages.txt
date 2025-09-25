@@ -8,7 +8,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "bg": [
@@ -29,7 +30,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "de": [
@@ -43,7 +45,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "es": [
@@ -61,7 +64,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "fr": [
@@ -70,7 +74,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "it": [
@@ -88,7 +93,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "ja": [
@@ -100,7 +106,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "nl": [
@@ -116,7 +123,8 @@
     "languageArabic",
     "exerciseFinishedTitle",
     "exerciseFinishedSubtitle",
-    "backToHome"
+    "backToHome",
+    "brainfartTodo"
   ],
 
   "pt": [
@@ -128,7 +136,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "ru": [
@@ -140,7 +149,8 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ],
 
   "zh": [
@@ -158,6 +168,7 @@
     "backToHome",
     "copyLink",
     "copyExerciseLink",
-    "linkCopied"
+    "linkCopied",
+    "brainfartTodo"
   ]
 }

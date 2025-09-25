@@ -56,5 +56,6 @@
   "backToHome": "Back to Home",
   "copyLink": "Copy Link",
   "copyExerciseLink": "Copy Exercise Link",
-  "linkCopied": "Link copied to clipboard"
+  "linkCopied": "Link copied to clipboard",
+  "brainfartTodo": "Brainfart To-Do"
 }

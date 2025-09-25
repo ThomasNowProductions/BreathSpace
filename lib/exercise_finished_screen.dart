@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:OpenBreath/brainfart_todo_screen.dart';
 import '../l10n/app_localizations.dart';
 
 class ExerciseFinishedScreen extends StatelessWidget {
-  const ExerciseFinishedScreen({super.key});
+  final String? brainfartText;
+
+  const ExerciseFinishedScreen({super.key, this.brainfartText});
 
   @override
   Widget build(BuildContext context) {
+    print('Received brainfartText: $brainfartText');
     final localizations = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -33,6 +37,17 @@ class ExerciseFinishedScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32.0),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => BrainfartTodoScreen(brainfartText: brainfartText ?? ''),
+                    ),
+                  );
+                },
+                child: Text(localizations.brainfartTodo),
+              ),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).popUntil((route) => route.isFirst); // Go back to home
