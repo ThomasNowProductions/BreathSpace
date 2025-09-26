@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:OpenBreath/gemini_service.dart';
 import 'dart:convert';
 
-class BrainfartTodoScreen extends StatefulWidget {
+class CaptureThoughtsScreen extends StatefulWidget {
   final String brainfartText;
 
-  const BrainfartTodoScreen({super.key, required this.brainfartText});
+  const CaptureThoughtsScreen({super.key, required this.brainfartText});
 
   @override
-  State<BrainfartTodoScreen> createState() => _BrainfartTodoScreenState();
+  State<CaptureThoughtsScreen> createState() => _CaptureThoughtsScreenState();
 }
 
-class _BrainfartTodoScreenState extends State<BrainfartTodoScreen> {
+class _CaptureThoughtsScreenState extends State<CaptureThoughtsScreen> {
   bool _isLoading = false;
   List<String> _todoItems = [];
   String? _error;
@@ -19,10 +19,10 @@ class _BrainfartTodoScreenState extends State<BrainfartTodoScreen> {
   @override
   void initState() {
     super.initState();
-    _processBrainfartText();
+    _processCaptureThoughtsText();
   }
 
-  Future<void> _processBrainfartText() async {
+  Future<void> _processCaptureThoughtsText() async {
     setState(() {
       _isLoading = true;
       _error = null;
@@ -31,8 +31,8 @@ class _BrainfartTodoScreenState extends State<BrainfartTodoScreen> {
     try {
       final geminiService = GeminiService();
       
-      // Process the brainfart text using Gemini
-      final response = await geminiService.processBrainfartText(widget.brainfartText);
+      // Process the captured thoughts using Gemini
+      final response = await geminiService.processCaptureThoughtsText(widget.brainfartText);
 
       // Parse the response as JSON
       if (response != null) {
@@ -96,7 +96,7 @@ class _BrainfartTodoScreenState extends State<BrainfartTodoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Brainfart To-Do'),
+        title: Text('Capture your thoughts'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -104,7 +104,7 @@ class _BrainfartTodoScreenState extends State<BrainfartTodoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Captured Thoughts:',
+              'Your Thoughts:',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 8.0),

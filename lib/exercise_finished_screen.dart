@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:OpenBreath/brainfart_todo_screen.dart';
+import 'package:OpenBreath/capture_thoughts_screen.dart';
 import '../l10n/app_localizations.dart';
 
 class ExerciseFinishedScreen extends StatelessWidget {
@@ -41,7 +41,7 @@ class ExerciseFinishedScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => BrainfartTodoScreen(brainfartText: brainfartText ?? ''),
+                      builder: (context) => CaptureThoughtsScreen(brainfartText: brainfartText ?? ''),
                     ),
                   );
                 },

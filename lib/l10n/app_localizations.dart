@@ -469,7 +469,7 @@ abstract class AppLocalizations {
   /// No description provided for @brainfartTodo.
   ///
   /// In en, this message translates to:
-  /// **'Brainfart To-Do'**
+  /// **'Capture your thoughts'**
   String get brainfartTodo;
 }
 

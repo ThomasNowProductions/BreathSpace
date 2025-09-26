@@ -186,5 +186,5 @@ class AppLocalizationsFr extends AppLocalizations {
   String get linkCopied => 'Link copied to clipboard';
 
   @override
-  String get brainfartTodo => 'Brainfart To-Do';
+  String get brainfartTodo => 'Capture your thoughts';
 }

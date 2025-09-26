@@ -185,5 +185,5 @@ class AppLocalizationsNl extends AppLocalizations {
   String get linkCopied => 'Link gekopieerd naar klembord';
 
   @override
-  String get brainfartTodo => 'Brainfart To-Do';
+  String get brainfartTodo => 'Capture your thoughts';
 }
