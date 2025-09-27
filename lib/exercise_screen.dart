@@ -477,34 +477,56 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                     ],
                   ),
                 ),
+                // Add swipe detection area for settings
                 Positioned(
-                  top: 20,
-                  right: 20,
-                  child: PopupMenuButton<String>(
-                    icon: Icon(
-                      Icons.more_vert,
-                      size: 30,
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                    onSelected: (String result) {
-                      if (result == 'close') {
-                        _onExerciseComplete(); // Use the same completion method for consistent fade out
-                      } else if (result == 'settings') {
-                        Navigator.pushNamed(context, '/settings');
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: GestureDetector(
+                    onPanUpdate: (details) {
+                      // Detect right-to-left swipe
+                      if (details.delta.dx < 0) { // Swiping left
+                        // Only navigate if the swipe is significant enough
+                        if (details.delta.dx < -5) {
+                          Navigator.pushNamed(context, '/settings');
+                        }
                       }
                     },
-                    itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                      PopupMenuItem<String>(
-                        value: 'settings',
-                        child: Text(AppLocalizations.of(context).settings),
-                      ),
-                      PopupMenuItem<String>(
-                        value: 'close',
-                        child: Text(AppLocalizations.of(context).close),
-                      ),
-                    ],
+                    child: Container(
+                      // Transparent container to capture gestures
+                      color: Colors.transparent,
+                    ),
                   ),
                 ),
+                // Positioned(
+                //   top: 20,
+                //   right: 20,
+                //   child: PopupMenuButton<String>(
+                //     icon: Icon(
+                //       Icons.more_vert,
+                //       size: 30,
+                //       color: Theme.of(context).colorScheme.onSurface,
+                //     ),
+                //     onSelected: (String result) {
+                //       if (result == 'close') {
+                //         _onExerciseComplete(); // Use the same completion method for consistent fade out
+                //       } else if (result == 'settings') {
+                //         Navigator.pushNamed(context, '/settings');
+                //       }
+                //     },
+                //     itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                //       PopupMenuItem<String>(
+                //         value: 'settings',
+                //         child: Text(AppLocalizations.of(context).settings),
+                //       ),
+                //       PopupMenuItem<String>(
+                //         value: 'close',
+                //         child: Text(AppLocalizations.of(context).close),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
     );
