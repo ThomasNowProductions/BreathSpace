@@ -30,6 +30,7 @@
   "hold": "Hold",
   "throughNose": "through nose",
   "throughMouth": "through mouth",
+  "whileHoldingBreath": "while holding breath",
   "close": "Close",
   "exerciseInvalid": "Exercise not found or invalid pattern.",
   "progressiveExercise": "Progressive Exercise",

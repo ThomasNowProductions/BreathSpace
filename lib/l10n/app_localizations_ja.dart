@@ -102,6 +102,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get throughMouth => '口で';
 
   @override
+  String get whileHoldingBreath => '息を止める間';
+
+  @override
   String get close => '閉じる';
 
   @override

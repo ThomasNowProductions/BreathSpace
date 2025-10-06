@@ -103,6 +103,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get throughMouth => 'par la bouche';
 
   @override
+  String get whileHoldingBreath => 'en retenant votre respiration';
+
+  @override
   String get close => 'Fermer';
 
   @override

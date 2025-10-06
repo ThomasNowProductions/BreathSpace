@@ -103,6 +103,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get throughMouth => 'през устата';
 
   @override
+  String get whileHoldingBreath => 'докато задържате дъха';
+
+  @override
   String get close => 'Затвори';
 
   @override

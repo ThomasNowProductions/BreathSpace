@@ -304,6 +304,12 @@ abstract class AppLocalizations {
   /// **'through mouth'**
   String get throughMouth;
 
+  /// No description provided for @whileHoldingBreath.
+  ///
+  /// In en, this message translates to:
+  /// **'while holding breath'**
+  String get whileHoldingBreath;
+
   /// No description provided for @close.
   ///
   /// In en, this message translates to:

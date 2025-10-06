@@ -372,6 +372,19 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
           instructionText = '${l10n.exhale} ${l10n.throughMouth}';
         }
       }
+    } else if (_currentPhase == BreathingPhase.hold1 || _currentPhase == BreathingPhase.hold2) {
+      // Hold phase - show hold method
+      // For hold phases, we'll use the same method as inhale since you're holding after inhaling
+      if (widget.exercise.inhaleMethod != null) {
+        if (widget.exercise.inhaleMethod == 'nose') {
+          instructionText = '${l10n.hold} ${l10n.throughNose}';
+        } else if (widget.exercise.inhaleMethod == 'mouth') {
+          instructionText = '${l10n.hold} ${l10n.throughMouth}';
+        }
+      } else {
+        // If no specific inhale method, show general hold instruction
+        instructionText = l10n.whileHoldingBreath;
+      }
     }
 
     // Only show the instruction if we have text to display

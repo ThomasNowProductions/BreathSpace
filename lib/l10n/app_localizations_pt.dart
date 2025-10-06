@@ -103,6 +103,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get throughMouth => 'pela boca';
 
   @override
+  String get whileHoldingBreath => 'enquanto prende a respiração';
+
+  @override
   String get close => 'Fechar';
 
   @override

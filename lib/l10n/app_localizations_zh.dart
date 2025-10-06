@@ -102,6 +102,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get throughMouth => '用嘴';
 
   @override
+  String get whileHoldingBreath => '屏息时';
+
+  @override
   String get close => '关闭';
 
   @override

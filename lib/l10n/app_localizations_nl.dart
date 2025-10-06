@@ -102,6 +102,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get throughMouth => 'door mond';
 
   @override
+  String get whileHoldingBreath => 'tijdens het ophouden van de adem';
+
+  @override
   String get close => 'Sluiten';
 
   @override

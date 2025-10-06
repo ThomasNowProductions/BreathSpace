@@ -102,6 +102,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get throughMouth => 'через рот';
 
   @override
+  String get whileHoldingBreath => 'задерживая дыхание';
+
+  @override
   String get close => 'Закрыть';
 
   @override

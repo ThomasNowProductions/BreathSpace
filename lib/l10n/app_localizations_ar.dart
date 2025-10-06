@@ -102,6 +102,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get throughMouth => 'من الفم';
 
   @override
+  String get whileHoldingBreath => 'أثناء حبس النفس';
+
+  @override
   String get close => 'إغلاق';
 
   @override
