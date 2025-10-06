@@ -4,16 +4,23 @@ import 'package:OpenBreath/exercise_screen.dart';
 import 'package:OpenBreath/l10n/app_localizations.dart';
 import 'package:clipboard/clipboard.dart';
 
-class ExerciseDetailScreen extends StatelessWidget {
+class ExerciseDetailScreen extends StatefulWidget {
   final BreathingExercise exercise;
 
   const ExerciseDetailScreen({super.key, required this.exercise});
 
   @override
+  State<ExerciseDetailScreen> createState() => _ExerciseDetailScreenState();
+}
+
+class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
+  ExerciseVersion _selectedVersion = ExerciseVersion.normal;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(exercise.title),
+        title: Text(widget.exercise.title),
         actions: [
           IconButton(
             icon: const Icon(Icons.link),
@@ -28,18 +35,42 @@ class ExerciseDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              exercise.title,
+              widget.exercise.title,
               style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16.0),
             Text(
-              exercise.intro,
+              widget.exercise.intro,
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16.0),
-            if (exercise.hasStages) ...[
+
+            // Version selection buttons
+            if (widget.exercise.hasVersions) ...[
+              Text(
+                'Choose Version:',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildVersionButton(ExerciseVersion.short, 'Short'),
+                  const SizedBox(width: 8.0),
+                  _buildVersionButton(ExerciseVersion.normal, 'Normal'),
+                  const SizedBox(width: 8.0),
+                  _buildVersionButton(ExerciseVersion.long, 'Long'),
+                ],
+              ),
+              const SizedBox(height: 16.0),
+            ],
+
+            if (widget.exercise.hasStages || widget.exercise.getStagesForVersion(_selectedVersion) != null) ...[
               Text(
                 AppLocalizations.of(context).progressiveExercise,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -48,7 +79,7 @@ class ExerciseDetailScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8.0),
-              ...exercise.stages!.map((stage) => Padding(
+              ...?(widget.exercise.getStagesForVersion(_selectedVersion)?.map((stage) => Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -60,16 +91,28 @@ class ExerciseDetailScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              )),
+              )) ?? widget.exercise.stages?.map((stage) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '${stage.title}: ${stage.pattern} (${_formatDuration(stage.duration)})',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ))),
             ] else ...[
               Text(
-                'Pattern: ${exercise.pattern}',
+                'Pattern: ${widget.exercise.getPatternForVersion(_selectedVersion)}',
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8.0),
               Text(
-                'Duration: ${exercise.duration}',
+                'Duration: ${widget.exercise.getDurationForVersion(_selectedVersion)}',
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
@@ -81,7 +124,10 @@ class ExerciseDetailScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ExerciseScreen(exercise: exercise),
+                      builder: (context) => ExerciseScreen(
+                        exercise: widget.exercise,
+                        selectedVersion: _selectedVersion,
+                      ),
                     ),
                   );
                 },
@@ -91,6 +137,22 @@ class ExerciseDetailScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildVersionButton(ExerciseVersion version, String label) {
+    final isSelected = version == _selectedVersion;
+    return ElevatedButton(
+      onPressed: () {
+        setState(() {
+          _selectedVersion = version;
+        });
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: isSelected ? Theme.of(context).primaryColor : null,
+        foregroundColor: isSelected ? Colors.white : null,
+      ),
+      child: Text(label),
     );
   }
 
@@ -104,8 +166,7 @@ class ExerciseDetailScreen extends StatelessWidget {
   }
 
   void _copyExerciseLink(BuildContext context) {
-    final String shareUrl = 'https://openbreath.vercel.app/exercise/${exercise.id}';
-    final String shareText = '${AppLocalizations.of(context).copyExerciseLink}: ${exercise.title}\n\n$shareUrl';
+    final String shareUrl = 'https://openbreath.vercel.app/exercise/${widget.exercise.id}';
 
     FlutterClipboard.copy(shareUrl).then((_) {
       ScaffoldMessenger.of(context).showSnackBar(

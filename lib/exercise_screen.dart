@@ -15,8 +15,9 @@ enum BreathingPhase { inhale, hold1, exhale, hold2 }
 
 class ExerciseScreen extends StatefulWidget {
   final BreathingExercise exercise;
-  
-  const ExerciseScreen({super.key, required this.exercise});
+  final ExerciseVersion? selectedVersion;
+
+  const ExerciseScreen({super.key, required this.exercise, this.selectedVersion});
 
   @override
   State<ExerciseScreen> createState() => _ExerciseScreenState();
@@ -101,16 +102,18 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
     // Hide the status bar during the exercise
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     
-    // Initialize stages
-    if (widget.exercise.hasStages) {
-      _stages = widget.exercise.stages!;
+    // Initialize stages based on selected version
+    final selectedVersion = widget.selectedVersion ?? ExerciseVersion.normal;
+
+    if (widget.exercise.hasStages || widget.exercise.getStagesForVersion(selectedVersion) != null) {
+      _stages = widget.exercise.getStagesForVersion(selectedVersion) ?? widget.exercise.stages!;
     } else {
       // Create a single stage from the original exercise for backward compatibility
       _stages = [
         BreathingStage(
           title: widget.exercise.title,
-          pattern: widget.exercise.pattern,
-          duration: _parseDurationString(widget.exercise.duration),
+          pattern: widget.exercise.getPatternForVersion(selectedVersion),
+          duration: _parseDurationString(widget.exercise.getDurationForVersion(selectedVersion)),
           inhaleMethod: widget.exercise.inhaleMethod,
           exhaleMethod: widget.exercise.exhaleMethod,
         )
@@ -502,7 +505,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                       _buildBreathingMethodInstruction(context),
                       SizedBox(height: 10),
                       // Display current stage information below the bubble
-                      if (widget.exercise.hasStages) ...[
+                      if (widget.exercise.hasStages || widget.exercise.getStagesForVersion(widget.selectedVersion ?? ExerciseVersion.normal) != null) ...[
                         Text(
                           '${_stages[_currentStageIndex].title} (${_currentStageIndex + 1}/${_stages.length})',
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -518,7 +521,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                         ),
                       ] else ...[
                         Text(
-                          '${AppLocalizations.of(context).pattern}: ${widget.exercise.pattern}',
+                          '${AppLocalizations.of(context).pattern}: ${widget.exercise.getPatternForVersion(widget.selectedVersion ?? ExerciseVersion.normal)}',
                           style: Theme.of(context).textTheme.bodyMedium,
                           textAlign: TextAlign.center,
                         ),
