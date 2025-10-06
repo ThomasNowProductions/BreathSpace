@@ -116,7 +116,7 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
         }
       }
 
-      if (recommendedExercise != null && mounted) {
+      if (mounted) {
         print('Navigating to ExerciseDetailScreen with exercise ID: ${recommendedExercise.id}'); // Debugging line
         Navigator.push(
           context,

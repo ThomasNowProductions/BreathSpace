@@ -416,7 +416,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Fixed size container for the bubble to prevent layout shifts
-                      Container(
+                      SizedBox(
                         width: 300,
                         height: 300,
                         child: AnimatedBuilder(
@@ -429,7 +429,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                                 currentRadius,
                                 Theme.of(context).colorScheme.secondary,
                               ),
-                              child: Container(
+                              child: SizedBox(
                                 width: currentRadius * 2,
                                 height: currentRadius * 2,
                                 child: Center(

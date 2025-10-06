@@ -7,7 +7,7 @@ import 'package:clipboard/clipboard.dart';
 class ExerciseDetailScreen extends StatelessWidget {
   final BreathingExercise exercise;
 
-  const ExerciseDetailScreen({Key? key, required this.exercise}) : super(key: key);
+  const ExerciseDetailScreen({super.key, required this.exercise});
 
   @override
   Widget build(BuildContext context) {
