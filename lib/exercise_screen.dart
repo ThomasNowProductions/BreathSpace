@@ -527,10 +527,39 @@ class _ExerciseScreenState extends State<ExerciseScreen> with TickerProviderStat
                         if (details.delta.dx < -5) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => SettingsScreen(
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation, secondaryAnimation) => SettingsScreen(
                                 fromExercise: true,
                               ),
+                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                return Stack(
+                                  children: [
+                                    // Slide out current screen to the left
+                                    SlideTransition(
+                                      position: Tween<Offset>(
+                                        begin: Offset.zero,
+                                        end: const Offset(-1.0, 0.0),
+                                      ).animate(CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.easeInOut,
+                                      )),
+                                      child: const SizedBox.expand(),
+                                    ),
+                                    // Settings screen stays mostly stationary with slight slide in
+                                    SlideTransition(
+                                      position: Tween<Offset>(
+                                        begin: const Offset(1.0, 0.0),
+                                        end: Offset.zero,
+                                      ).animate(CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.easeInOut,
+                                      )),
+                                      child: child,
+                                    ),
+                                  ],
+                                );
+                              },
+                              transitionDuration: const Duration(milliseconds: 300),
                             ),
                           ).then((value) {
                             // If settings return with instruction to stop exercise, handle it
