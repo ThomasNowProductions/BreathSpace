@@ -1,6 +1,6 @@
-# OpenBreath Documentation
+# BreathSpace Documentation
 
-Welcome to the OpenBreath documentation. This guide will help you understand the project structure, setup process, and how to contribute.
+Welcome to the BreathSpace documentation. This guide will help you understand the project structure, setup process, and how to contribute.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ Welcome to the OpenBreath documentation. This guide will help you understand the
 
 ## Project Overview
 
-OpenBreath is a Flutter application designed to help users practice various breathing exercises for relaxation and meditation. The app features:
+BreathSpace is a Flutter application designed to help users practice various breathing exercises for relaxation and meditation. The app features:
 
 - Multiple breathing exercise patterns
 - Progressive exercise programs
@@ -137,4 +137,4 @@ flutter build web      # Web
 
 ## Design
 
-OpenBreath follows a clean, minimalist design philosophy focused on promoting calm and relaxation. For detailed information about the design principles, color scheme, typography, and UI components, please refer to the [Design Guide](./DESIGN_GUIDE.md).
+BreathSpace follows a clean, minimalist design philosophy focused on promoting calm and relaxation. For detailed information about the design principles, color scheme, typography, and UI components, please refer to the [Design Guide](./DESIGN_GUIDE.md).

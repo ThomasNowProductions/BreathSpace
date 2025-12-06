@@ -1,6 +1,6 @@
 # State Management
 
-This document explains how state is managed in the OpenBreath application.
+This document explains how state is managed in the BreathSpace application.
 
 ## Table of Contents
 
@@ -12,7 +12,7 @@ This document explains how state is managed in the OpenBreath application.
 
 ## Overview
 
-OpenBreath uses the Provider package for state management, which is a wrapper around InheritedWidget to make them more usable and reusable.
+BreathSpace uses the Provider package for state management, which is a wrapper around InheritedWidget to make them more usable and reusable.
 
 ## Provider Pattern
 

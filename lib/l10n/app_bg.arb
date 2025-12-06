@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "Търсене по заглавие, модел или въведение",
   "progressive": "Прогресивен",
   "settings": "Настройки",
@@ -32,7 +32,7 @@
   "musicNature": "Природа",
   "musicLofi": "LoFi",
   "replayIntro": "Повторно въведение",
-  "welcomeTitle": "Добре дошли в OpenBreath",
+  "welcomeTitle": "Добре дошли в BreathSpace",
   "welcomeSubtitle": "Безсмисленото приложение за дишане за спокойствие и сън.",
   "getStarted": "Първи стъпки",
   "promptCacheTitle": "Кеш на подкани от ИИ",

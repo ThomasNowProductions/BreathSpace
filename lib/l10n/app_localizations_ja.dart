@@ -9,7 +9,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'OpenBreath';
+  String get appTitle => 'BreathSpace';
 
   @override
   String get searchHint => 'エクササイズを検索...';
@@ -144,7 +144,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get replayIntro => 'イントロを再再生';
 
   @override
-  String get welcomeTitle => 'OpenBreathへようこそ';
+  String get welcomeTitle => 'BreathSpaceへようこそ';
 
   @override
   String get welcomeSubtitle => '冷静と睡眠のための面倒くさくない呼吸アプリ。';

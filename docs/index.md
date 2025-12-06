@@ -1,6 +1,6 @@
-# OpenBreath Documentation Index
+# BreathSpace Documentation Index
 
-Welcome to the OpenBreath documentation. This is the central hub for all project documentation.
+Welcome to the BreathSpace documentation. This is the central hub for all project documentation.
 
 ## Getting Started
 

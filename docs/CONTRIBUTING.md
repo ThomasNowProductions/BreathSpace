@@ -1,6 +1,6 @@
-# Contributing to OpenBreath
+# Contributing to BreathSpace
 
-Thank you for your interest in contributing to OpenBreath! This document provides guidelines and information to help you get started.
+Thank you for your interest in contributing to BreathSpace! This document provides guidelines and information to help you get started.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ By participating in this project, you are expected to uphold our Code of Conduct
 
 ## How to Contribute
 
-There are several ways you can contribute to OpenBreath:
+There are several ways you can contribute to BreathSpace:
 
 1. **Report bugs** - If you find a bug, please create an issue with detailed information
 2. **Suggest features** - We welcome new ideas and feature requests

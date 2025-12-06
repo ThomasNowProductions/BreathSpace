@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "Поиск по названию, шаблону или вступлению",
   "progressive": "Прогрессивный",
   "settings": "Настройки",
@@ -41,7 +41,7 @@
   "musicNature": "Природа",
   "musicLofi": "LoFi",
   "replayIntro": "Повторить вступление",
-  "welcomeTitle": "Добро пожаловать в OpenBreath",
+  "welcomeTitle": "Добро пожаловать в BreathSpace",
   "welcomeSubtitle": "Простое приложение для дыхательных упражнений для спокойствия и сна.",
   "getStarted": "Начать",
   "promptCacheTitle": "Кэш запросов ИИ",

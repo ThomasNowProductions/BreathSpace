@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
-import 'package:OpenBreath/main.dart';
-import 'package:OpenBreath/data.dart';
-import 'package:OpenBreath/theme_provider.dart';
-import 'package:OpenBreath/settings_provider.dart';
-import 'package:OpenBreath/pinned_exercises_provider.dart';
+import 'package:BreathSpace/main.dart';
+import 'package:BreathSpace/data.dart';
+import 'package:BreathSpace/theme_provider.dart';
+import 'package:BreathSpace/settings_provider.dart';
+import 'package:BreathSpace/pinned_exercises_provider.dart';
 
 void main() {
-  testWidgets('OpenBreathApp displays correctly', (WidgetTester tester) async {
+  testWidgets('BreathSpaceApp displays correctly', (WidgetTester tester) async {
     // Load exercises first
     await loadBreathingExercisesUsingSystemLocale();
     
@@ -28,7 +28,7 @@ void main() {
           ChangeNotifierProvider(create: (context) => SettingsProvider()),
           ChangeNotifierProvider(create: (context) => PinnedExercisesProvider()),
         ],
-        child: const OpenBreathApp(seen: false),
+        child: const BreathSpaceApp(seen: false),
       ),
     );
 

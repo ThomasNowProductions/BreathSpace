@@ -1,6 +1,6 @@
 # Data Models
 
-This document describes the data models used in the OpenBreath application.
+This document describes the data models used in the BreathSpace application.
 
 ## Table of Contents
 

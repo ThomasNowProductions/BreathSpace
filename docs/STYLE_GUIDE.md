@@ -1,6 +1,6 @@
 # Style Guide
 
-This document outlines the coding conventions and style guidelines for the OpenBreath project.
+This document outlines the coding conventions and style guidelines for the BreathSpace project.
 
 ## Table of Contents
 

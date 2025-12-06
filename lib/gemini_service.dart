@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:OpenBreath/data.dart'; // Assuming data.dart contains BreathingExercise
-import 'package:OpenBreath/prompt_cache_service.dart'; // Import the prompt cache service
+import 'package:BreathSpace/data.dart'; // Assuming data.dart contains BreathingExercise
+import 'package:BreathSpace/prompt_cache_service.dart'; // Import the prompt cache service
 
 class GeminiService {
   // TODO: Replace with your actual Gemini API key.

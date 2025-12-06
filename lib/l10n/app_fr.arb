@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "Rechercher par titre, motif ou introduction",
   "progressive": "Progressif",
   "settings": "Paramètres",
@@ -44,7 +44,7 @@
   "musicNature": "Nature",
   "musicLofi": "LoFi",
   "replayIntro": "Rejouer l'introduction",
-  "welcomeTitle": "Bienvenue dans OpenBreath",
+  "welcomeTitle": "Bienvenue dans BreathSpace",
   "welcomeSubtitle": "L'application de respiration sans prise de tête pour le calme et le sommeil.",
   "getStarted": "Commencer",
   "promptCacheTitle": "Cache des invites IA",

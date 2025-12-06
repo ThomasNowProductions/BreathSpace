@@ -121,7 +121,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'OpenBreath'**
+  /// **'BreathSpace'**
   String get appTitle;
 
   /// No description provided for @searchHint.
@@ -391,7 +391,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to OpenBreath'**
+  /// **'Welcome to BreathSpace'**
   String get welcomeTitle;
 
   /// No description provided for @welcomeSubtitle.

@@ -1,4 +1,4 @@
-# OpenBreath
+# BreathSpace
 
 A Flutter application for breathing exercises and meditation.
 

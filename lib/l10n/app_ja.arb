@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "エクササイズを検索...",
   "progressive": "プログレッシブ",
   "settings": "設定",
@@ -41,7 +41,7 @@
   "musicNature": "自然",
   "musicLofi": "LoFi",
   "replayIntro": "イントロを再再生",
-  "welcomeTitle": "OpenBreathへようこそ",
+  "welcomeTitle": "BreathSpaceへようこそ",
   "welcomeSubtitle": "冷静と睡眠のための面倒くさくない呼吸アプリ。",
   "getStarted": "始めましょう",
   "promptCacheTitle": "AIプロンプトキャッシュ",

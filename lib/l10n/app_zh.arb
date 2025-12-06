@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "按标题、模式或简介搜索",
   "progressive": "渐进式",
   "settings": "设置",
@@ -35,7 +35,7 @@
   "musicNature": "自然",
   "musicLofi": "LoFi",
   "replayIntro": "重播介绍",
-  "welcomeTitle": "欢迎来到 OpenBreath",
+  "welcomeTitle": "欢迎来到 BreathSpace",
   "welcomeSubtitle": "一款用于平静和睡眠的简单呼吸应用程序。",
   "getStarted": "开始",
   "promptCacheTitle": "AI提示缓存",

@@ -9,7 +9,7 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get appTitle => 'OpenBreath';
+  String get appTitle => 'BreathSpace';
 
   @override
   String get searchHint => 'Поиск по названию, шаблону или вступлению';
@@ -145,7 +145,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get replayIntro => 'Повторить вступление';
 
   @override
-  String get welcomeTitle => 'Добро пожаловать в OpenBreath';
+  String get welcomeTitle => 'Добро пожаловать в BreathSpace';
 
   @override
   String get welcomeSubtitle =>

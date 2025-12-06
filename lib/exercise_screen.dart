@@ -1,11 +1,11 @@
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:OpenBreath/l10n/app_localizations.dart';
-import 'package:OpenBreath/data.dart';
-import 'package:OpenBreath/exercise_finished_screen.dart';
+import 'package:BreathSpace/l10n/app_localizations.dart';
+import 'package:BreathSpace/data.dart';
+import 'package:BreathSpace/exercise_finished_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:OpenBreath/settings_provider.dart';
+import 'package:BreathSpace/settings_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import 'settings_screen.dart'; // Import settings screen

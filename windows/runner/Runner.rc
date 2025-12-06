@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "OpenBreath" "\0"
+            VALUE "FileDescription", "BreathSpace" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "OpenBreath" "\0"
+            VALUE "InternalName", "BreathSpace" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "OpenBreath.exe" "\0"
-            VALUE "ProductName", "OpenBreath" "\0"
+            VALUE "OriginalFilename", "BreathSpace.exe" "\0"
+            VALUE "ProductName", "BreathSpace" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

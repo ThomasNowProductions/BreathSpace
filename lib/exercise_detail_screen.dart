@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:OpenBreath/data.dart';
-import 'package:OpenBreath/exercise_screen.dart';
-import 'package:OpenBreath/l10n/app_localizations.dart';
+import 'package:BreathSpace/data.dart';
+import 'package:BreathSpace/exercise_screen.dart';
+import 'package:BreathSpace/l10n/app_localizations.dart';
 
 class ExerciseDetailScreen extends StatefulWidget {
   final BreathingExercise exercise;

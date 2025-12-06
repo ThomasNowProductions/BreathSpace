@@ -1,6 +1,6 @@
 # Design Guide
 
-This document outlines the design principles, color scheme, typography, and UI components used in the OpenBreath application.
+This document outlines the design principles, color scheme, typography, and UI components used in the BreathSpace application.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ This document outlines the design principles, color scheme, typography, and UI c
 
 ## Design Principles
 
-OpenBreath follows these core design principles:
+BreathSpace follows these core design principles:
 
 1. **Simplicity**: Clean, uncluttered interface that focuses on the breathing exercise
 2. **Calmness**: Design elements that promote relaxation and mindfulness
@@ -51,7 +51,7 @@ OpenBreath follows these core design principles:
 
 ### Font Family
 
-OpenBreath uses the "GFS Didot" font family for all text elements. This elegant serif font promotes a sense of calm and sophistication.
+BreathSpace uses the "GFS Didot" font family for all text elements. This elegant serif font promotes a sense of calm and sophistication.
 
 ### Text Styles
 

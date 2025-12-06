@@ -1,4 +1,4 @@
-package com.example.OpenBreath
+package com.thomasnowproductions.breathspace
 
 import io.flutter.embedding.android.FlutterActivity
 

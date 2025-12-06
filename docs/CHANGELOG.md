@@ -26,12 +26,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-09-13
 
 ### Added
-- Initial release of OpenBreath
+- Initial release of BreathSpace
 - Basic breathing exercises
 - Multi-language support (English, Dutch)
 - Settings screen with language selection
 - Exercise timer functionality
 - Breathing visualization
 
-[Unreleased]: https://github.com/your-org/openbreath/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/your-org/openbreath/releases/tag/v1.0.0
+[Unreleased]: https://github.com/your-org/breathspace/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/your-org/breathspace/releases/tag/v1.0.0

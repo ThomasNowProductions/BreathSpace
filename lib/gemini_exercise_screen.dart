@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:OpenBreath/data.dart';
-import 'package:OpenBreath/gemini_service.dart';
-import 'package:OpenBreath/exercise_detail_screen.dart';
+import 'package:BreathSpace/data.dart';
+import 'package:BreathSpace/gemini_service.dart';
+import 'package:BreathSpace/exercise_detail_screen.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class GeminiExerciseScreen extends StatefulWidget {

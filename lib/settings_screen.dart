@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:OpenBreath/theme_provider.dart';
-import 'package:OpenBreath/settings_provider.dart';
-import 'package:OpenBreath/l10n/app_localizations.dart';
-import 'package:OpenBreath/prompt_cache_service.dart'; // Import prompt cache service
+import 'package:BreathSpace/theme_provider.dart';
+import 'package:BreathSpace/settings_provider.dart';
+import 'package:BreathSpace/l10n/app_localizations.dart';
+import 'package:BreathSpace/prompt_cache_service.dart'; // Import prompt cache service
 import 'intro_screen.dart';
 
 class SettingsScreen extends StatefulWidget {

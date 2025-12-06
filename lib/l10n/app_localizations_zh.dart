@@ -9,7 +9,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'OpenBreath';
+  String get appTitle => 'BreathSpace';
 
   @override
   String get searchHint => '按标题、模式或简介搜索';
@@ -144,7 +144,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get replayIntro => '重播介绍';
 
   @override
-  String get welcomeTitle => '欢迎来到 OpenBreath';
+  String get welcomeTitle => '欢迎来到 BreathSpace';
 
   @override
   String get welcomeSubtitle => '一款用于平静和睡眠的简单呼吸应用程序。';

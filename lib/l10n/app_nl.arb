@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "Zoek oefeningen...",
   "progressive": "Progressief",
   "settings": "Instellingen",
@@ -34,7 +34,7 @@
   "musicNature": "Natuur",
   "musicLofi": "LoFi",
   "replayIntro": "Intro opnieuw afspelen",
-  "welcomeTitle": "Welkom bij OpenBreath",
+  "welcomeTitle": "Welkom bij BreathSpace",
   "welcomeSubtitle": "De no-nonsense ademhalingsapp voor rust en slaap.",
   "getStarted": "Beginnen",
   "promptCacheTitle": "AI Prompt Cache",

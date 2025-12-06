@@ -1,5 +1,5 @@
 {
-  "appTitle": "OpenBreath",
+  "appTitle": "BreathSpace",
   "searchHint": "البحث عن تمارين...",
   "progressive": "تدريجي",
   "settings": "الإعدادات",
@@ -41,7 +41,7 @@
   "musicNature": "الطبيعة",
   "musicLofi": "LoFi",
   "replayIntro": "إعادة تشغيل المقدمة",
-  "welcomeTitle": "مرحبًا بك في OpenBreath",
+  "welcomeTitle": "مرحبًا بك في BreathSpace",
   "welcomeSubtitle": "تطبيق التنفس بدون تعقيدات للهدوء والنوم.",
   "getStarted": "البدء",
   "promptCacheTitle": "ذاكرة التخزين المؤقت لمحفزات الذكاء الاصطناعي",

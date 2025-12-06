@@ -1,6 +1,6 @@
 # Roadmap
 
-This document outlines the future plans and features for the OpenBreath project.
+This document outlines the future plans and features for the BreathSpace project.
 
 ## Table of Contents
 
@@ -9,7 +9,7 @@ This document outlines the future plans and features for the OpenBreath project.
 
 ## Vision
 
-OpenBreath aims to become the most comprehensive and user-friendly breathing exercise application, helping people reduce stress, improve focus, and enhance overall well-being through guided breathing techniques.
+BreathSpace aims to become the most comprehensive and user-friendly breathing exercise application, helping people reduce stress, improve focus, and enhance overall well-being through guided breathing techniques.
 
 ## Roadmap
 

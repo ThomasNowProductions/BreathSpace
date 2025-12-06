@@ -1,6 +1,6 @@
 # Project Structure
 
-This document provides an overview of the OpenBreath project structure.
+This document provides an overview of the BreathSpace project structure.
 
 ## Root Directory
 

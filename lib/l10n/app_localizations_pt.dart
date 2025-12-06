@@ -9,7 +9,7 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get appTitle => 'OpenBreath';
+  String get appTitle => 'BreathSpace';
 
   @override
   String get searchHint => 'Pesquisar por título, padrão ou introdução';
@@ -145,7 +145,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get replayIntro => 'Reproduzir introdução novamente';
 
   @override
-  String get welcomeTitle => 'Bem-vindo ao OpenBreath';
+  String get welcomeTitle => 'Bem-vindo ao BreathSpace';
 
   @override
   String get welcomeSubtitle =>

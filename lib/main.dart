@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:OpenBreath/exercise_detail_screen.dart';
+import 'package:BreathSpace/exercise_detail_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'settings_screen.dart'; // Import the new settings screen
 import 'package:provider/provider.dart';
-import 'package:OpenBreath/theme_provider.dart';
-import 'package:OpenBreath/data.dart'; // Import the data file
+import 'package:BreathSpace/theme_provider.dart';
+import 'package:BreathSpace/data.dart'; // Import the data file
 
-import 'package:OpenBreath/settings_provider.dart'; // Import the new settings provider
-import 'package:OpenBreath/l10n/app_localizations.dart';
-import 'package:OpenBreath/pinned_exercises_provider.dart';
+import 'package:BreathSpace/settings_provider.dart'; // Import the new settings provider
+import 'package:BreathSpace/l10n/app_localizations.dart';
+import 'package:BreathSpace/pinned_exercises_provider.dart';
 
 import 'intro_screen.dart';
-import 'package:OpenBreath/gemini_exercise_screen.dart';
+import 'package:BreathSpace/gemini_exercise_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
@@ -29,14 +29,14 @@ void main() async {
         ChangeNotifierProvider(create: (context) => SettingsProvider()),
         ChangeNotifierProvider(create: (context) => PinnedExercisesProvider()),
       ],
-      child: OpenBreathApp(seen: seen),
+      child: BreathSpaceApp(seen: seen),
     ),
   );
 }
 
-class OpenBreathApp extends StatelessWidget {
+class BreathSpaceApp extends StatelessWidget {
   final bool seen;
-  const OpenBreathApp({super.key, required this.seen});
+  const BreathSpaceApp({super.key, required this.seen});
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 # Testing Guide
 
-This document provides guidelines for writing and running tests in the OpenBreath project.
+This document provides guidelines for writing and running tests in the BreathSpace project.
 
 ## Table of Contents
 
@@ -61,7 +61,7 @@ Run with: `flutter test test/integration/`
 
 ```dart
 import 'package:test/test.dart';
-import 'package:openbreath/models/exercise.dart';
+import 'package:breathspace/models/exercise.dart';
 
 void main() {
   group('Exercise', () {
@@ -86,7 +86,7 @@ void main() {
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:openbreath/screens/home_screen.dart';
+import 'package:breathspace/screens/home_screen.dart';
 
 void main() {
   testWidgets('Home screen displays title', (WidgetTester tester) async {
@@ -98,7 +98,7 @@ void main() {
     );
     
     // Act & Assert
-    expect(find.text('OpenBreath'), findsOneWidget);
+    expect(find.text('BreathSpace'), findsOneWidget);
   });
 }
 ```
