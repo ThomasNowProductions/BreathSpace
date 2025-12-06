@@ -228,7 +228,7 @@ class BreathingExerciseScreen extends StatefulWidget {
   State<BreathingExerciseScreen> createState() => _BreathingExerciseScreenState();
 }
 
-class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with TickerProviderStateMixin {
+class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with TickerProviderStateMixin, WidgetsBindingObserver {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
   List<BreathingExercise> _filteredExercises = [];
@@ -242,6 +242,8 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this); // Add lifecycle observer
+
     _searchController.addListener(_performSearch);
 
     _pinnedExercisesProvider = Provider.of<PinnedExercisesProvider>(context, listen: false);
@@ -286,6 +288,7 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this); // Remove lifecycle observer
     _searchController.dispose();
     _searchFocusNode.dispose();
     _fadeController.dispose();
@@ -295,6 +298,32 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
       _settingsProvider.removeListener(_settingsListener!);
     }
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    // Handle app lifecycle changes to prevent unresponsiveness
+    switch (state) {
+      case AppLifecycleState.paused:
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.hidden:
+        // Pause animation when app goes to background
+        if (_fadeController.isAnimating) {
+          _fadeController.stop();
+        }
+        break;
+      case AppLifecycleState.resumed:
+        // Resume animation when app comes back to foreground
+        if (!_fadeController.isAnimating && _fadeController.value < 1.0) {
+          _fadeController.forward();
+        }
+        break;
+      case AppLifecycleState.detached:
+        // App is being terminated
+        break;
+    }
   }
 
   void _updatePinnedExercises() {
@@ -442,58 +471,44 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
         opacity: _fadeAnimation,
         child: Column(
           children: [
+            const SizedBox(height: 16), // Add spacing between search bar and content
             if (_pinnedExercises.isNotEmpty && _searchController.text.isEmpty)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
-                  child: Text(
-                    'Quick Access',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onSurface,
-                      letterSpacing: -0.2,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 160,
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final screenWidth = MediaQuery.of(context).size.width;
-                      final availableWidth = screenWidth - 32; // Subtract horizontal padding (16 + 16)
-                      final totalMargin = (_pinnedExercises.length - 1) * 8; // Margin between items (4 + 4 per gap)
-                      final itemWidth = (availableWidth - totalMargin) / _pinnedExercises.length;
+            SizedBox(
+              height: 160,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final screenWidth = MediaQuery.of(context).size.width;
+                  final availableWidth = screenWidth - 32; // Subtract horizontal padding (16 + 16)
+                  final totalMargin = (_pinnedExercises.length - 1) * 8; // Margin between items (4 + 4 per gap)
+                  final itemWidth = (availableWidth - totalMargin) / _pinnedExercises.length;
 
-                      return ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        itemCount: _pinnedExercises.length,
-                        itemBuilder: (context, index) {
-                          final exercise = _pinnedExercises[index];
-                          return GestureDetector(
-                            onLongPress: () {
-                              _pinnedExercisesProvider.togglePin(exercise.title);
-                            },
-                            child: Container(
-                              width: itemWidth, // Divide space equally among all pinned exercises
-                              margin: EdgeInsets.only(
-                                left: index == 0 ? 0 : 4.0,
-                                right: index == _pinnedExercises.length - 1 ? 0 : 4.0,
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    itemCount: _pinnedExercises.length,
+                    itemBuilder: (context, index) {
+                      final exercise = _pinnedExercises[index];
+                      return GestureDetector(
+                        onLongPress: () {
+                          _pinnedExercisesProvider.togglePin(exercise.title);
+                        },
+                        child: Container(
+                          width: itemWidth, // Divide space equally among all pinned exercises
+                          margin: EdgeInsets.only(
+                            left: index == 0 ? 0 : 4.0,
+                            right: index == _pinnedExercises.length - 1 ? 0 : 4.0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: 12,
+                                offset: const Offset(0, 4),
                               ),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor,
-                                borderRadius: BorderRadius.circular(20),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.08),
-                                    blurRadius: 12,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
+                            ],
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -588,9 +603,6 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
                   );
                 },
               ),
-            ),
-            const SizedBox(height: 8),
-          ],
             ),
           Expanded(
             child: _filteredExercises.isEmpty && _searchController.text.isNotEmpty
