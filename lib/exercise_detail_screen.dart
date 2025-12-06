@@ -19,9 +19,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.exercise.title),
-      ),
+      appBar: AppBar(title: Text(widget.exercise.title)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -44,9 +42,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
             if (widget.exercise.hasVersions) ...[
               Text(
                 'Choose Version:',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8.0),
@@ -63,40 +61,49 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
               const SizedBox(height: 16.0),
             ],
 
-            if (widget.exercise.hasStages || widget.exercise.getStagesForVersion(_selectedVersion) != null) ...[
+            if (widget.exercise.hasStages ||
+                widget.exercise.getStagesForVersion(_selectedVersion) !=
+                    null) ...[
               Text(
                 AppLocalizations.of(context).progressiveExercise,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8.0),
-              ...?(widget.exercise.getStagesForVersion(_selectedVersion)?.map((stage) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${stage.title}: ${stage.pattern} (${_formatDuration(stage.duration)})',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      textAlign: TextAlign.center,
+              ...?(widget.exercise
+                      .getStagesForVersion(_selectedVersion)
+                      ?.map(
+                        (stage) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${stage.title}: ${stage.pattern} (${_formatDuration(stage.duration)})',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ) ??
+                  widget.exercise.stages?.map(
+                    (stage) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '${stage.title}: ${stage.pattern} (${_formatDuration(stage.duration)})',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              )) ?? widget.exercise.stages?.map((stage) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '${stage.title}: ${stage.pattern} (${_formatDuration(stage.duration)})',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ))),
+                  )),
             ] else ...[
               Text(
                 'Pattern: ${widget.exercise.getPatternForVersion(_selectedVersion)}',
@@ -145,8 +152,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         backgroundColor: isSelected ? Theme.of(context).primaryColor : null,
         foregroundColor: isSelected
             ? Theme.of(context).brightness == Brightness.dark
-                ? Colors.black
-                : Colors.white
+                  ? Colors.black
+                  : Colors.white
             : null,
       ),
       child: Text(label),
@@ -163,7 +170,8 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   }
 
   void _copyExerciseLink(BuildContext context) {
-    final String shareUrl = 'https://openbreath.vercel.app/exercise/${widget.exercise.id}';
+    final String shareUrl =
+        'https://BreathSpace.vercel.app/exercise/${widget.exercise.id}';
 
     FlutterClipboard.copy(shareUrl).then((_) {
       if (mounted) {

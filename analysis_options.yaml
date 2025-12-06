@@ -22,7 +22,7 @@ linter:
   # producing the lint.
   rules:
     avoid_print: false  # Allow print statements in the logger
-    package_names: false  # Allow the OpenBreath package name to maintain compatibility
+    package_names: false  # Allow the BreathSpace package name to maintain compatibility
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
 
 # Additional information about this file can be found at
