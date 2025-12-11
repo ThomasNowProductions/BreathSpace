@@ -61,7 +61,7 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
             end: Alignment.bottomCenter,
             colors: [
               Theme.of(context).scaffoldBackgroundColor,
-              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.95),
+              Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.95),
             ],
           ),
         ),
@@ -86,13 +86,13 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                                Theme.of(context).colorScheme.primary.withOpacity(0.05),
+                                Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+                                Theme.of(context).colorScheme.primary.withValues(alpha: 0.05),
                               ],
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
                                 blurRadius: 20,
                                 offset: const Offset(0, 10),
                               ),
@@ -122,7 +122,7 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7),
+                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                             height: 1.4,
                             letterSpacing: 0.2,
                           ),
@@ -135,7 +135,7 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
-                              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                               height: 1.4,
                             ),
                             children: [

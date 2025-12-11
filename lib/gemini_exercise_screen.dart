@@ -81,49 +81,81 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
       _isLoading = true;
     });
 
-    final geminiService = GeminiService();
-    final recommendedId = await geminiService.recommendExercise(
-      _userInputController.text,
-      breathingExercises, // Assuming breathingExercises is globally available or passed
-    );
+    try {
+      final geminiService = GeminiService();
+      final recommendedId = await geminiService.recommendExercise(
+        _userInputController.text,
+        breathingExercises,
+      );
 
-    setState(() {
-      _isLoading = false;
-    });
+      setState(() {
+        _isLoading = false;
+      });
 
-    if (recommendedId != 'none') {
+      if (recommendedId == null) {
+        // API call failed
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Unable to connect to AI service. Please check your internet connection and try again.'),
+              duration: Duration(seconds: 4),
+            ),
+          );
+        }
+        return;
+      }
+
+      if (recommendedId == 'none') {
+        // No suitable recommendation
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('No suitable exercise found for your request. Try describing your mood or goal differently.'),
+              duration: Duration(seconds: 4),
+            ),
+          );
+        }
+        return;
+      }
+
+      // Find the recommended exercise
       BreathingExercise? recommendedExercise;
       try {
         recommendedExercise = breathingExercises.firstWhere(
           (exercise) => exercise.id == recommendedId,
-          orElse: () => breathingExercises.first, // Fallback to first exercise if not found
         );
       } catch (e) {
-        // Handle case where breathingExercises might be empty or firstWhere fails
+        // Exercise not found, fallback to first exercise
         if (breathingExercises.isNotEmpty) {
           recommendedExercise = breathingExercises.first;
         } else {
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('No exercises available to recommend.')),
+              const SnackBar(content: Text('No exercises available.')),
             );
           }
           return;
         }
       }
 
-      if (mounted) {
+      if (mounted && recommendedExercise != null) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ExerciseDetailScreen(exercise: recommendedExercise!), // Assert non-null
+            builder: (context) => ExerciseDetailScreen(exercise: recommendedExercise!),
           ),
         );
       }
-    } else {
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Gemini could not recommend a suitable exercise.')),
+          SnackBar(
+            content: Text('An error occurred: ${e.toString()}'),
+            duration: const Duration(seconds: 4),
+          ),
         );
       }
     }
