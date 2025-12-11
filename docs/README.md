@@ -39,7 +39,17 @@ BreathSpace is a Flutter application designed to help users practice various bre
 
 The app uses Flutter's gen-l10n for localization. Currently supported languages:
 - English (`en`)
+- Spanish (`es`)
+- French (`fr`)
+- German (`de`)
+- Italian (`it`)
 - Dutch (`nl`)
+- Portuguese (`pt`)
+- Russian (`ru`)
+- Japanese (`ja`)
+- Chinese (`zh`)
+- Bulgarian (`bg`)
+- Arabic (`ar`)
 
 ### Adding a New Language
 
@@ -60,7 +70,17 @@ The app uses Flutter's gen-l10n for localization. Currently supported languages:
 Users can change the app language through the Settings screen (`Settings > Language`):
 - System default
 - English
+- Spanish
+- French
+- German
+- Italian
 - Dutch
+- Portuguese
+- Russian
+- Japanese
+- Chinese
+- Bulgarian
+- Arabic
 
 The selected language is persisted with `shared_preferences` and applied on startup.
 
@@ -78,11 +98,31 @@ Exercise data is stored in a single JSON file: `assets/exercises.json`. This fil
     "duration": "4 min",
     "title": {
       "en": "Box Breathing",
-      "nl": "Box Ademhaling"
+      "es": "Respiración en Caja",
+      "fr": "Respiration Carrée",
+      "de": "Box-Atmung",
+      "it": "Respirazione a Scatola",
+      "nl": "Box Ademhaling",
+      "pt": "Respiração Quadrada",
+      "ru": "Квадратное дыхание",
+      "ja": "ボックス呼吸",
+      "zh": "方块呼吸",
+      "bg": "Квадратно дишане",
+      "ar": "التنفس المربع"
     },
     "intro": {
       "en": "A simple technique to calm your mind and body.",
-      "nl": "Een eenvoudige techniek om je geest en lichaam te kalmeren."
+      "es": "Una técnica simple para calmar tu mente y cuerpo.",
+      "fr": "Une technique simple pour calmer votre esprit et votre corps.",
+      "de": "Eine einfache Technik, um Ihren Geist und Körper zu beruhigen.",
+      "it": "Una tecnica semplice per calmare la tua mente e il tuo corpo.",
+      "nl": "Een eenvoudige techniek om je geest en lichaam te kalmeren.",
+      "pt": "Uma técnica simples para acalmar sua mente e corpo.",
+      "ru": "Простая техника для успокоения ума и тела.",
+      "ja": "心と体を落ち着かせるシンプルなテクニック。",
+      "zh": "一种简单的技术来平静你的心灵和身体。",
+      "bg": "Проста техника за успокояване на ума и тялото.",
+      "ar": "تقنية بسيطة لتهدئة عقلك وجسمك."
     }
   }
 ]

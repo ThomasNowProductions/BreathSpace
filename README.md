@@ -1,6 +1,6 @@
 # BreathSpace
 
-A Flutter application for breathing exercises and meditation.
+A Flutter app for breathing exercises and meditation to promote calm and relaxation. Features multiple breathing patterns, progressive exercises, AI-powered personalized recommendations, and complete localization in 11 languages.
 
 ## Documentation
 
