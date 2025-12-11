@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:BreathSpace/data.dart';
 import 'package:BreathSpace/gemini_service.dart';
@@ -297,18 +298,25 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
                                             ),
                                           ),
                                         )
+                                      else if (Platform.isAndroid || Platform.isIOS)
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            IconButton(
+                                              icon: Icon(
+                                                _isListening ? Icons.mic_off : Icons.mic,
+                                                color: _isListening
+                                                    ? Theme.of(context).colorScheme.primary
+                                                    : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                                                size: 24,
+                                              ),
+                                              onPressed: _isListening ? _stopListening : _startListening,
+                                            ),
+                                            const SizedBox(width: 8),
+                                          ],
+                                        )
                                       else
-                                        IconButton(
-                                          icon: Icon(
-                                            _isListening ? Icons.mic_off : Icons.mic,
-                                            color: _isListening
-                                                ? Theme.of(context).colorScheme.primary
-                                                : Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
-                                            size: 24,
-                                          ),
-                                          onPressed: _isListening ? _stopListening : _startListening,
-                                        ),
-                                      const SizedBox(width: 8),
+                                        SizedBox.shrink(),
                                       Container(
                                         width: 48,
                                         height: 48,
