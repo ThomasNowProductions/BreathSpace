@@ -63,6 +63,18 @@ class AppLocalizationsSw extends AppLocalizations {
   String get languageArabic => 'Kiarabu';
 
   @override
+  String get languageKorean => 'Kikorea';
+
+  @override
+  String get languageHindi => 'Kihindi';
+
+  @override
+  String get languageTurkish => 'Kituruki';
+
+  @override
+  String get languagePolish => 'Kipolishi';
+
+  @override
   String get theme => 'Mandhari';
 
   @override

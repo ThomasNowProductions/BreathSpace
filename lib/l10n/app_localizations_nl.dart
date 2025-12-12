@@ -63,6 +63,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get languageArabic => 'Arabisch';
 
   @override
+  String get languageKorean => 'Koreaans';
+
+  @override
+  String get languageHindi => 'Hindi';
+
+  @override
+  String get languageTurkish => 'Turks';
+
+  @override
+  String get languagePolish => 'Pools';
+
+  @override
   String get theme => 'Thema';
 
   @override

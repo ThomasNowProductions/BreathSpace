@@ -63,6 +63,18 @@ class AppLocalizationsUk extends AppLocalizations {
   String get languageArabic => 'Арабська';
 
   @override
+  String get languageKorean => 'Корейська';
+
+  @override
+  String get languageHindi => 'Гінді';
+
+  @override
+  String get languageTurkish => 'Турецька';
+
+  @override
+  String get languagePolish => 'Польська';
+
+  @override
   String get theme => 'Тема';
 
   @override

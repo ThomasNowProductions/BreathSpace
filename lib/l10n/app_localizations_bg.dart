@@ -63,6 +63,18 @@ class AppLocalizationsBg extends AppLocalizations {
   String get languageArabic => 'Арабски';
 
   @override
+  String get languageKorean => 'Корейски';
+
+  @override
+  String get languageHindi => 'Хинди';
+
+  @override
+  String get languageTurkish => 'Турски';
+
+  @override
+  String get languagePolish => 'Полски';
+
+  @override
   String get theme => 'Тема';
 
   @override

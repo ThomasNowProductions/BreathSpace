@@ -63,6 +63,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get languageArabic => 'アラビア語';
 
   @override
+  String get languageKorean => '韓国語';
+
+  @override
+  String get languageHindi => 'ヒンディー語';
+
+  @override
+  String get languageTurkish => 'トルコ語';
+
+  @override
+  String get languagePolish => 'ポーランド語';
+
+  @override
   String get theme => 'テーマ';
 
   @override

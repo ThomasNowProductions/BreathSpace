@@ -244,6 +244,30 @@ abstract class AppLocalizations {
   /// **'Arabic'**
   String get languageArabic;
 
+  /// No description provided for @languageKorean.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean'**
+  String get languageKorean;
+
+  /// No description provided for @languageHindi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hindi'**
+  String get languageHindi;
+
+  /// No description provided for @languageTurkish.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish'**
+  String get languageTurkish;
+
+  /// No description provided for @languagePolish.
+  ///
+  /// In en, this message translates to:
+  /// **'Polish'**
+  String get languagePolish;
+
   /// No description provided for @theme.
   ///
   /// In en, this message translates to:

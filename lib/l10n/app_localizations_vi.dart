@@ -63,6 +63,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get languageArabic => 'Tiếng Ả Rập';
 
   @override
+  String get languageKorean => 'Tiếng Hàn';
+
+  @override
+  String get languageHindi => 'Tiếng Hindi';
+
+  @override
+  String get languageTurkish => 'Tiếng Thổ Nhĩ Kỳ';
+
+  @override
+  String get languagePolish => 'Tiếng Ba Lan';
+
+  @override
   String get theme => 'Chủ đề';
 
   @override

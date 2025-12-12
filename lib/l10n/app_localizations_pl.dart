@@ -63,6 +63,18 @@ class AppLocalizationsPl extends AppLocalizations {
   String get languageArabic => 'Arabski';
 
   @override
+  String get languageKorean => 'Koreański';
+
+  @override
+  String get languageHindi => 'Hindi';
+
+  @override
+  String get languageTurkish => 'Turecki';
+
+  @override
+  String get languagePolish => 'Polski';
+
+  @override
   String get theme => 'Motyw';
 
   @override
