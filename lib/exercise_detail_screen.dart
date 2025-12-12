@@ -4,9 +4,14 @@ import 'package:BreathSpace/exercise_screen.dart';
 import 'package:BreathSpace/l10n/app_localizations.dart';
 
 class ExerciseDetailScreen extends StatefulWidget {
-  final BreathingExercise exercise;
+  final BreathingExercise? exercise;
+  final Future<BreathingExercise?> Function()? aiRecommendationCallback;
 
-  const ExerciseDetailScreen({super.key, required this.exercise});
+  const ExerciseDetailScreen({
+    super.key,
+    this.exercise,
+    this.aiRecommendationCallback,
+  });
 
   @override
   State<ExerciseDetailScreen> createState() => _ExerciseDetailScreenState();
@@ -14,18 +19,75 @@ class ExerciseDetailScreen extends StatefulWidget {
 
 class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   ExerciseVersion _selectedVersion = ExerciseVersion.normal;
+  BreathingExercise? _currentExercise;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentExercise = widget.exercise;
+
+    // If we have an AI callback, execute it to get the exercise
+    if (widget.aiRecommendationCallback != null) {
+      _fetchExerciseWithAi();
+    } else {
+      // If we already have an exercise, stop loading
+      if (widget.exercise != null) {
+        _isLoading = false;
+      }
+    }
+  }
+
+  Future<void> _fetchExerciseWithAi() async {
+    try {
+      final recommendedExercise = await widget.aiRecommendationCallback!();
+      if (recommendedExercise != null) {
+        setState(() {
+          _currentExercise = recommendedExercise;
+          _isLoading = false;
+        });
+      } else {
+        // Handle case where AI couldn't recommend an exercise
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      // Handle error case
+      setState(() {
+        _isLoading = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to load exercise: $e'),
+            duration: const Duration(seconds: 4),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.exercise.title,
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            letterSpacing: -0.2,
-          ),
-        ),
+        title: _isLoading
+            ? Container(
+                width: 150,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              )
+            : Text(
+                _currentExercise!.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: -0.2,
+                ),
+              ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         foregroundColor: Theme.of(context).colorScheme.onSurface,
@@ -57,56 +119,81 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                         height: 80,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Theme.of(context).colorScheme.primary.withValues(alpha: 0.15),
-                              Theme.of(context).colorScheme.primary.withValues(alpha: 0.08),
-                            ],
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
-                              blurRadius: 20,
-                              offset: const Offset(0, 8),
-                            ),
-                          ],
+                          gradient: _isLoading
+                              ? null
+                              : LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Theme.of(context).colorScheme.primary.withValues(alpha: 0.15),
+                                    Theme.of(context).colorScheme.primary.withValues(alpha: 0.08),
+                                  ],
+                                ),
+                          boxShadow: _isLoading
+                              ? []
+                              : [
+                                  BoxShadow(
+                                    color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 8),
+                                  ),
+                                ],
+                          color: _isLoading ? Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1) : null,
                         ),
-                        child: Icon(
-                          Icons.spa_outlined,
-                          size: 36,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
+                        child: _isLoading
+                            ? null
+                            : Icon(
+                                Icons.spa_outlined,
+                                size: 36,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                       ),
                       const SizedBox(height: 32),
-                      Text(
-                        widget.exercise.title,
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w300,
-                          color: Theme.of(context).colorScheme.onSurface,
-                          letterSpacing: -0.5,
-                          height: 1.1,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      _isLoading
+                          ? Container(
+                              width: 200,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            )
+                          : Text(
+                              _currentExercise!.title,
+                              style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.w300,
+                                color: Theme.of(context).colorScheme.onSurface,
+                                letterSpacing: -0.5,
+                                height: 1.1,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                       const SizedBox(height: 16),
-                      Text(
-                        widget.exercise.intro,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
-                          height: 1.5,
-                          letterSpacing: 0.1,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      _isLoading
+                          ? Container(
+                              width: 250,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            )
+                          : Text(
+                              _currentExercise!.intro,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
+                                height: 1.5,
+                                letterSpacing: 0.1,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
                       const SizedBox(height: 40),
 
                       // Version selection buttons
-                      if (widget.exercise.hasVersions) ...[
+                      if (!_isLoading && _currentExercise!.hasVersions) ...[
                         Text(
                           'Choose Duration',
                           style: TextStyle(
@@ -129,6 +216,46 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                           ],
                         ),
                         const SizedBox(height: 40),
+                      ] else if (_isLoading) ...[
+                        // Skeleton for version selection buttons
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 44,
+                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Container(
+                                height: 44,
+                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Container(
+                                height: 44,
+                                margin: const EdgeInsets.symmetric(horizontal: 4),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 40),
                       ],
 
                       // Exercise details
@@ -147,8 +274,46 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                         ),
                         child: Column(
                           children: [
-                            if (widget.exercise.hasStages ||
-                                widget.exercise.getStagesForVersion(_selectedVersion) != null) ...[
+                            if (_isLoading) ...[
+                              // Skeleton for progressive exercise content
+                              Container(
+                                width: 140,
+                                height: 20,
+                                margin: const EdgeInsets.only(bottom: 16),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 50,
+                                margin: const EdgeInsets.only(bottom: 12),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.5),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 50,
+                                margin: const EdgeInsets.only(bottom: 12),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.5),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              Container(
+                                width: double.infinity,
+                                height: 50,
+                                margin: const EdgeInsets.only(bottom: 12),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.5),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ] else if (_currentExercise!.hasStages ||
+                                _currentExercise!.getStagesForVersion(_selectedVersion) != null) ...[
                               Text(
                                 'Progressive Exercise',
                                 style: TextStyle(
@@ -160,7 +325,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                                 textAlign: TextAlign.center,
                               ),
                               const SizedBox(height: 16),
-                              ...?(widget.exercise
+                              ...?(_currentExercise!
                                       .getStagesForVersion(_selectedVersion)
                                       ?.map(
                                         (stage) => Container(
@@ -193,7 +358,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                                           ),
                                         ),
                                       ) ??
-                                  widget.exercise.stages?.map(
+                                  _currentExercise!.stages?.map(
                                     (stage) => Container(
                                       margin: const EdgeInsets.only(bottom: 12),
                                       padding: const EdgeInsets.all(12),
@@ -235,7 +400,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    widget.exercise.getPatternForVersion(_selectedVersion),
+                                    _currentExercise!.getPatternForVersion(_selectedVersion),
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
@@ -255,7 +420,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                                   ),
                                   const SizedBox(width: 8),
                                   Text(
-                                    widget.exercise.getDurationForVersion(_selectedVersion),
+                                    _currentExercise!.getDurationForVersion(_selectedVersion),
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
@@ -290,36 +455,47 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   height: 56,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ExerciseScreen(
-                            exercise: widget.exercise,
-                            selectedVersion: _selectedVersion,
+                  child: _isLoading
+                      ? Container(
+                          width: double.infinity,
+                          height: 56,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        )
+                      : ElevatedButton(
+                          onPressed: _currentExercise != null
+                              ? () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ExerciseScreen(
+                                        exercise: _currentExercise!,
+                                        selectedVersion: _selectedVersion,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              : null,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).colorScheme.primary,
+                            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                            elevation: 0,
+                            shadowColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context).start,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.5,
+                            ),
                           ),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                      elevation: 0,
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    child: Text(
-                      AppLocalizations.of(context).start,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -330,6 +506,20 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   }
 
   Widget _buildVersionButton(ExerciseVersion version, String label) {
+    if (_isLoading || _currentExercise == null || !_currentExercise!.hasVersions) {
+      // Return a disabled skeleton button when loading or if versions are not available
+      return Expanded(
+        child: Container(
+          height: 44,
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      );
+    }
+
     final isSelected = version == _selectedVersion;
     return Expanded(
       child: GestureDetector(
@@ -387,5 +577,4 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
       return '$minutes min';
     }
   }
-
 }

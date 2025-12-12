@@ -84,66 +84,86 @@ class _GeminiExerciseScreenState extends State<GeminiExerciseScreen> {
 
     try {
       final geminiService = GeminiService();
-      final recommendedId = await geminiService.recommendExercise(
-        _userInputController.text,
-        breathingExercises,
-      );
 
+      // Set loading to false to hide the loader in this screen,
+      // since the detail screen will show its own loading
       setState(() {
         _isLoading = false;
       });
 
-      if (recommendedId == null) {
-        // API call failed
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Unable to connect to AI service. Please check your internet connection and try again.'),
-              duration: Duration(seconds: 4),
-            ),
-          );
-        }
-        return;
-      }
-
-      if (recommendedId == 'none') {
-        // No suitable recommendation
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('No suitable exercise found for your request. Try describing your mood or goal differently.'),
-              duration: Duration(seconds: 4),
-            ),
-          );
-        }
-        return;
-      }
-
-      // Find the recommended exercise
-      BreathingExercise? recommendedExercise;
-      try {
-        recommendedExercise = breathingExercises.firstWhere(
-          (exercise) => exercise.id == recommendedId,
-        );
-      } catch (e) {
-        // Exercise not found, fallback to first exercise
-        if (breathingExercises.isNotEmpty) {
-          recommendedExercise = breathingExercises.first;
-        } else {
-          if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('No exercises available.')),
-            );
-          }
-          return;
-        }
-      }
-
+      // Navigate immediately to ExerciseDetailScreen with AI callback
       if (mounted) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ExerciseDetailScreen(exercise: recommendedExercise!),
+            builder: (detailContext) => ExerciseDetailScreen(
+              aiRecommendationCallback: () async {
+                try {
+                  final recommendedId = await geminiService.recommendExercise(
+                    _userInputController.text,
+                    breathingExercises,
+                  );
+
+                  if (recommendedId == null) {
+                    // API call failed
+                    if (detailContext.mounted) {
+                      ScaffoldMessenger.of(detailContext).showSnackBar(
+                        const SnackBar(
+                          content: Text('Unable to connect to AI service. Please check your internet connection and try again.'),
+                          duration: Duration(seconds: 4),
+                        ),
+                      );
+                    }
+                    return null;
+                  }
+
+                  if (recommendedId == 'none') {
+                    // No suitable recommendation
+                    if (detailContext.mounted) {
+                      ScaffoldMessenger.of(detailContext).showSnackBar(
+                        const SnackBar(
+                          content: Text('No suitable exercise found for your request. Try describing your mood or goal differently.'),
+                          duration: Duration(seconds: 4),
+                        ),
+                      );
+                    }
+                    return null;
+                  }
+
+                  // Find the recommended exercise
+                  BreathingExercise? recommendedExercise;
+                  try {
+                    recommendedExercise = breathingExercises.firstWhere(
+                      (exercise) => exercise.id == recommendedId,
+                    );
+                  } catch (e) {
+                    // Exercise not found, fallback to first exercise
+                    if (breathingExercises.isNotEmpty) {
+                      recommendedExercise = breathingExercises.first;
+                    } else {
+                      if (detailContext.mounted) {
+                        ScaffoldMessenger.of(detailContext).showSnackBar(
+                          const SnackBar(content: Text('No exercises available.')),
+                        );
+                      }
+                      return null;
+                    }
+                  }
+
+                  return recommendedExercise;
+                } catch (e) {
+                  if (detailContext.mounted) {
+                    ScaffoldMessenger.of(detailContext).showSnackBar(
+                      SnackBar(
+                        content: Text('An error occurred: ${e.toString()}'),
+                        duration: const Duration(seconds: 4),
+                      ),
+                    );
+                  }
+                  return null;
+                }
+              },
+            ),
           ),
         );
       }
