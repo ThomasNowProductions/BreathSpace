@@ -483,7 +483,9 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
         opacity: _fadeAnimation,
         child: Column(
           children: [
-            const SizedBox(height: 16), // Add spacing between search bar and content
+            // Add spacing between search bar and content only when there are pinned exercises
+            if (_pinnedExercises.isNotEmpty && _searchController.text.isEmpty)
+              const SizedBox(height: 16), // Spacing when pinned exercises are shown
             if (_pinnedExercises.isNotEmpty && _searchController.text.isEmpty)
             SizedBox(
               height: 160,
