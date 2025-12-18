@@ -206,15 +206,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get termsAgreementPrefix => 'بالمتابعة، أنت توافق على ';
 
   @override
-  String get termsOfService => 'شروط الخدمة';
+  String get privacyPolicy => 'سياسة الخصوصية';
 
   @override
   String get termsAgreementSuffix => ' الخاصة بنا.';
-
-  @override
-  String get termsDialogTitle => 'شروط الخدمة';
-
-  @override
-  String get termsDialogContent =>
-      'شروط الخدمة\n\n1. قبول الشروط\nباستخدام BreathSpace، أنت توافق على هذه الشروط.\n\n2. استخدام التطبيق\nBreathSpace مصمم لتمارين التنفس والتأمل. استخدمه بمسؤولية.\n\n3. الخصوصية\nنحن نجمع بيانات قليلة لتقديم خدماتنا. راجع سياسة الخصوصية للتفاصيل.\n\n4. ميزات الذكاء الاصطناعي\nيستخدم التطبيق الذكاء الاصطناعي لإنشاء تمارين مخصصة. المحتوى المولد لأغراض معلوماتية فقط.\n\n5. تحديد المسؤولية\nالتطبيق ليس نصيحة طبية. استشر المتخصصين بشأن مخاوف الصحة.\n\n6. تغييرات الشروط\nقد نحدث هذه الشروط. الاستخدام المستمر يعني القبول.\n\nآخر تحديث: ديسمبر 2024';
 }

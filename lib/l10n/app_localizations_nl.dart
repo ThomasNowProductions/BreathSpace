@@ -206,15 +206,8 @@ class AppLocalizationsNl extends AppLocalizations {
       'Door verder te gaan, ga je akkoord met onze ';
 
   @override
-  String get termsOfService => 'Servicevoorwaarden';
+  String get privacyPolicy => 'Privacybeleid';
 
   @override
   String get termsAgreementSuffix => '.';
-
-  @override
-  String get termsDialogTitle => 'Servicevoorwaarden';
-
-  @override
-  String get termsDialogContent =>
-      'Servicevoorwaarden\n\n1. Acceptatie van Voorwaarden\nDoor BreathSpace te gebruiken, ga je akkoord met deze voorwaarden.\n\n2. Gebruik van de App\nBreathSpace is ontworpen voor ademhalingsoefeningen en meditatie. Gebruik het verantwoordelijk.\n\n3. Privacy\nWe verzamelen minimale gegevens om onze diensten te leveren. Zie ons Privacybeleid voor details.\n\n4. AI Functies\nDe app gebruikt AI om gepersonaliseerde oefeningen te genereren. Gegenereerde inhoud is alleen voor informatieve doeleinden.\n\n5. Beperking van Aansprakelijkheid\nDe app is geen medisch advies. Raadpleeg professionals voor gezondheidszorgen.\n\n6. Wijzigingen in Voorwaarden\nWe kunnen deze voorwaarden bijwerken. Voortgezet gebruik betekent acceptatie.\n\nLaatst bijgewerkt: December 2024';
 }

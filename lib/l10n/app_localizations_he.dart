@@ -204,15 +204,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get termsAgreementPrefix => 'בהמשך אתה מסכים ל';
 
   @override
-  String get termsOfService => 'תנאי השירות';
+  String get privacyPolicy => 'מדיניות הפרטיות';
 
   @override
   String get termsAgreementSuffix => '.';
-
-  @override
-  String get termsDialogTitle => 'תנאי השירות';
-
-  @override
-  String get termsDialogContent =>
-      'תנאי השירות\n\n1. קבלת התנאים\nעל ידי שימוש ב-BreathSpace, אתה מסכים לתנאים אלו.\n\n2. שימוש באפליקציה\nBreathSpace נועד לתרגولي נשימה ומדיטציה. השתמש באחריות.\n\n3. פרטיות\nאנו אוספים מינימום של נתונים כדי לספק את השירות שלנו. ראה את מדיניות הפרטיות שלנו לפרטים.\n\n4. תכונות AI\nהאפליקציה משתמשת ב-intelligence מלאכותי כדי ליצור תרגולים אישיים. תוכן שנוצר מיועד למטרות מידע בלבד.\n\n5. הגבלת אחריות\nהאפליקציה אינה ייעוץ רפואי. יש להתייעץ עם אנשי מקצוע בבעיות בריאות.\n\n6. שינוי תנאים\nאנחנו עשויים לעדכן תנאים אלו. המשך שימוש מהווה הסכמה.\n\nעודכן לאחרונה: דצמבר 2024';
 }

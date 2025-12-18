@@ -205,15 +205,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String get termsAgreementPrefix => 'Kwa kuendelea, unakubaliana na ';
 
   @override
-  String get termsOfService => 'Sheria za Huduma';
+  String get privacyPolicy => 'Sera ya Faragha';
 
   @override
   String get termsAgreementSuffix => '.';
-
-  @override
-  String get termsDialogTitle => 'Sheria za Huduma';
-
-  @override
-  String get termsDialogContent =>
-      'Sheria za Huduma\n\n1. Ukubalianaji wa Sheria\nKwa kutumia BreathSpace, unakubaliana na sheria hizi.\n\n2. Matumizi ya Programu\nBreathSpace imetengenezwa kwa ajili ya mazoezi ya kupumua na utulivu. Tumia kwa uwazi.\n\n3. Faragha\nTunakusanya data kidogo ili kutoa huduma zetu. Tazama Sera yetu ya Faragha kwa maelezo zaidi.\n\n4. Vipengele vya AI\nProgramu hutumia AI kuzalisha mazoezi binafsi. Maudhui yaliyojengwa ni kwa madhumuni ya taarifa pekee.\n\n5. Kikomeo cha Ujira\nProgramu sio ushauri wa kitiba. Rejelea watu wataalam kwa maslahi ya afya.\n\n6. Mabadiliko ya Sheria\nTunaweza kusasisha sheria hizi. Matumizi yanayoendelea hukubaliana na kubali.\n\nImesasishwa mwisho: Desemba 2024';
 }

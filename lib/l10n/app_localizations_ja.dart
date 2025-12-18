@@ -204,15 +204,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get termsAgreementPrefix => '続行することで、当社の';
 
   @override
-  String get termsOfService => '利用規約';
+  String get privacyPolicy => 'プライバシーポリシー';
 
   @override
   String get termsAgreementSuffix => 'に同意したことになります。';
-
-  @override
-  String get termsDialogTitle => '利用規約';
-
-  @override
-  String get termsDialogContent =>
-      '利用規約\n\n1. 利用規約の受諾\nBreathSpaceを使用することで、これらの規約に同意したことになります。\n\n2. アプリの使用\nBreathSpaceは呼吸エクササイズと瞑想用に設計されています。責任を持って使用してください。\n\n3. プライバシー\n私たちはサービスを提供するために最小限のデータを収集します。詳細はプライバシーポリシーを参照してください。\n\n4. AI機能\nアプリはAIを使用してパーソナライズされたエクササイズを生成します。生成されたコンテンツは情報提供のみを目的としています。\n\n5. 責任の制限\nこのアプリは医療アドバイスではありません。健康上の懸念については専門家に相談してください。\n\n6. 規約の変更\nこれらの規約を更新する場合があります。継続した使用は受諾を意味します。\n\n最終更新: 2024年12月';
 }

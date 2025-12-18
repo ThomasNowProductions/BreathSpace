@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:BreathSpace/l10n/app_localizations.dart';
 
 import 'main.dart';
@@ -141,31 +142,20 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                             children: [
                               TextSpan(text: AppLocalizations.of(context).termsAgreementPrefix),
                               TextSpan(
-                                text: AppLocalizations.of(context).termsOfService,
+                                text: AppLocalizations.of(context).privacyPolicy,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.w500,
                                   decoration: TextDecoration.underline,
                                 ),
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Text(AppLocalizations.of(context).termsDialogTitle),
-                                          content: SingleChildScrollView(
-                                            child: Text(AppLocalizations.of(context).termsDialogContent),
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.of(context).pop(),
-                                              child: Text(AppLocalizations.of(context).close),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
+                                  ..onTap = () async {
+                                    final Uri url = Uri.parse('https://breathspace-app.vercel.app/privacy-policy.html');
+                                    if (await canLaunchUrl(url)) {
+                                      await launchUrl(url);
+                                    } else {
+                                      throw Exception('Could not launch $url');
+                                    }
                                   },
                               ),
                               TextSpan(text: AppLocalizations.of(context).termsAgreementSuffix),

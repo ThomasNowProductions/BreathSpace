@@ -206,15 +206,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get termsAgreementPrefix => 'Ao continuar, você concorda com nossos ';
 
   @override
-  String get termsOfService => 'Termos de Serviço';
+  String get privacyPolicy => 'Política de Privacidade';
 
   @override
   String get termsAgreementSuffix => '.';
-
-  @override
-  String get termsDialogTitle => 'Termos de Serviço';
-
-  @override
-  String get termsDialogContent =>
-      'Termos de Serviço\n\n1. Aceitação dos Termos\nAo usar o BreathSpace, você concorda com estes termos.\n\n2. Uso do App\nO BreathSpace é projetado para exercícios de respiração e meditação. Use com responsabilidade.\n\n3. Privacidade\nColetamos dados mínimos para fornecer nossos serviços. Veja nossa Política de Privacidade para detalhes.\n\n4. Recursos de IA\nO app usa IA para gerar exercícios personalizados. O conteúdo gerado é apenas para fins informativos.\n\n5. Limitação de Responsabilidade\nO app não é conselho médico. Consulte profissionais para preocupações de saúde.\n\n6. Mudanças nos Termos\nPodemos atualizar estes termos. O uso continuado constitui aceitação.\n\nÚltima atualização: Dezembro 2024';
 }

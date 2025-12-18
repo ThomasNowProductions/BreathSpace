@@ -204,15 +204,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get termsAgreementPrefix => '계속하면 당사의 ';
 
   @override
-  String get termsOfService => '서비스 약관';
+  String get privacyPolicy => '개인정보 보호 정책';
 
   @override
   String get termsAgreementSuffix => '에 동의하는 것입니다.';
-
-  @override
-  String get termsDialogTitle => '서비스 약관';
-
-  @override
-  String get termsDialogContent =>
-      '서비스 약관\n\n1. 약관 수락\nBreathSpace를 사용함으로써 귀하는 본 약관에 동의합니다.\n\n2. 앱 사용\nBreathSpace는 호흡 운동과 명상을 위해 설계되었습니다. 책임감 있게 사용하십시오.\n\n3. 개인정보\n서비스 제공을 위해 최소한의 데이터를 수집합니다. 개인정보 보호 정책에서 자세한 내용을 확인하십시오.\n\n4. AI 기능\n앱은 개인화된 운동을 생성하기 위해 AI를 사용합니다. 생성된 콘텐츠는 정보 제공 목적으로만 사용됩니다.\n\n5. 책임 제한\n이 앱은 의학적 조언이 아닙니다. 건강 문제에 대해서는 전문가와 상담하십시오.\n\n6. 약관 변경\n약관을 업데이트할 수 있습니다. 계속 사용하면 동의하는 것으로 간주됩니다.\n\n최종 업데이트: 2024년 12월';
 }

@@ -205,15 +205,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get termsAgreementPrefix => 'Devam ederek, ';
 
   @override
-  String get termsOfService => 'Hizmet Şartları';
+  String get privacyPolicy => 'Gizlilik Politikası';
 
   @override
   String get termsAgreementSuffix => 'mızı kabul edersiniz.';
-
-  @override
-  String get termsDialogTitle => 'Hizmet Şartları';
-
-  @override
-  String get termsDialogContent =>
-      'Hizmet Şartları\n\n1. Şartların Kabulü\nBreathSpace\'i kullanarak, bu şartları kabul edersiniz.\n\n2. Uygulamanın Kullanımı\nBreathSpace nefes egzersizleri ve meditasyon için tasarlanmıştır. Sorumlu bir şekilde kullanın.\n\n3. Gizlilik\nHizmetlerimizi sağlamak için minimum veri toplarız. Ayrıntılar için Gizlilik Politikamıza bakın.\n\n4. AI Özellikleri\nUygulama kişiselleştirilmiş egzersizler oluşturmak için AI kullanır. Oluşturulan içerik sadece bilgilendirme amaçlıdır.\n\n5. Sorumluluk Sınırlaması\nBu uygulama tıbbi tavsiye değildir. Sağlık sorunları için profesyonellere danışın.\n\n6. Şartlarda Değişiklik\nBu şartları güncelleyebiliriz. Devam eden kullanım kabulü gösterir.\n\nSon güncelleme: Aralık 2024';
 }

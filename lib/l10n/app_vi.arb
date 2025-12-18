@@ -64,8 +64,6 @@
   "copyExerciseLink": "Sao chép liên kết bài tập",
   "linkCopied": "Đã sao chép liên kết vào khay nhớ tạm",
   "termsAgreementPrefix": "Bằng cách tiếp tục, bạn đồng ý với ",
-  "termsOfService": "Điều khoản dịch vụ",
-  "termsAgreementSuffix": ".",
-  "termsDialogTitle": "Điều khoản dịch vụ",
-  "termsDialogContent": "Điều khoản dịch vụ\n\n1. Chấp nhận Điều khoản\nBằng cách sử dụng BreathSpace, bạn đồng ý với các điều khoản này.\n\n2. Sử dụng Ứng dụng\nBreathSpace được thiết kế cho các bài tập thở và thiền định. Sử dụng một cách có trách nhiệm.\n\n3. Quyền riêng tư\nChúng tôi thu thập dữ liệu tối thiểu để cung cấp dịch vụ của mình. Xin vui lòng xem Chính sách Quyền riêng tư của chúng tôi để biết thêm chi tiết.\n\n4. Tính năng AI\nỨng dụng sử dụng AI để tạo ra các bài tập cá nhân hóa. Nội dung được tạo ra chỉ nhằm mục đích thông tin.\n\n5. Giới hạn Trách nhiệm\nỨng dụng không phải là lời khuyên y tế. Xin vui lòng tham khảo ý kiến chuyên gia cho các vấn đề sức khỏe.\n\n6. Thay đổi Điều khoản\nChúng tôi có thể cập nhật các điều khoản này. Việc tiếp tục sử dụng cấu thành sự chấp nhận.\n\nCập nhật lần cuối: Tháng 12 năm 2024"
+  "privacyPolicy": "Chính sách Quyền riêng tư",
+  "termsAgreementSuffix": "."
 }

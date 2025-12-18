@@ -204,15 +204,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get termsAgreementPrefix => '继续即表示您同意我们的';
 
   @override
-  String get termsOfService => '服务条款';
+  String get privacyPolicy => '隐私政策';
 
   @override
   String get termsAgreementSuffix => '。';
-
-  @override
-  String get termsDialogTitle => '服务条款';
-
-  @override
-  String get termsDialogContent =>
-      '服务条款\n\n1. 条款接受\n使用 BreathSpace 即表示您同意这些条款。\n\n2. 应用使用\nBreathSpace 专为呼吸练习和冥想而设计。请负责任地使用。\n\n3. 隐私\n我们收集最少的数据来提供我们的服务。有关详细信息，请参阅我们的隐私政策。\n\n4. AI 功能\n应用使用 AI 生成个性化练习。生成的内容仅供参考。\n\n5. 责任限制\n该应用不是医疗建议。如有健康问题，请咨询专业人士。\n\n6. 条款变更\n我们可能会更新这些条款。继续使用即表示接受。\n\n最后更新：2024年12月';
 }

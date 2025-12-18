@@ -64,8 +64,6 @@
   "copyExerciseLink": "Egzersiz Bağlantısını Kopyala",
   "linkCopied": "Bağlantı panoya kopyalandı",
   "termsAgreementPrefix": "Devam ederek, ",
-  "termsOfService": "Hizmet Şartları",
-  "termsAgreementSuffix": "mızı kabul edersiniz.",
-  "termsDialogTitle": "Hizmet Şartları",
-  "termsDialogContent": "Hizmet Şartları\n\n1. Şartların Kabulü\nBreathSpace'i kullanarak, bu şartları kabul edersiniz.\n\n2. Uygulamanın Kullanımı\nBreathSpace nefes egzersizleri ve meditasyon için tasarlanmıştır. Sorumlu bir şekilde kullanın.\n\n3. Gizlilik\nHizmetlerimizi sağlamak için minimum veri toplarız. Ayrıntılar için Gizlilik Politikamıza bakın.\n\n4. AI Özellikleri\nUygulama kişiselleştirilmiş egzersizler oluşturmak için AI kullanır. Oluşturulan içerik sadece bilgilendirme amaçlıdır.\n\n5. Sorumluluk Sınırlaması\nBu uygulama tıbbi tavsiye değildir. Sağlık sorunları için profesyonellere danışın.\n\n6. Şartlarda Değişiklik\nBu şartları güncelleyebiliriz. Devam eden kullanım kabulü gösterir.\n\nSon güncelleme: Aralık 2024"
+  "privacyPolicy": "Gizlilik Politikası",
+  "termsAgreementSuffix": "mızı kabul edersiniz."
 }

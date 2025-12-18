@@ -207,15 +207,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get termsAgreementPrefix => 'Kontynuując, zgadzasz się z naszymi ';
 
   @override
-  String get termsOfService => 'Warunkami korzystania z usługi';
+  String get privacyPolicy => 'Polityka prywatności';
 
   @override
   String get termsAgreementSuffix => '.';
-
-  @override
-  String get termsDialogTitle => 'Warunki korzystania z usługi';
-
-  @override
-  String get termsDialogContent =>
-      'Warunki korzystania z usługi\n\n1. Akceptacja warunków\nKorzystając z BreathSpace, zgadzasz się z tymi warunkami.\n\n2. Korzystanie z aplikacji\nBreathSpace jest zaprojektowany do ćwiczeń oddechowych i medytacji. Korzystaj odpowiedzialnie.\n\n3. Prywatność\nZbieramy minimalne dane, aby świadczyć nasze usługi. Szczegóły znajdziesz w naszej Polityce prywatności.\n\n4. Funkcje AI\nAplikacja używa AI do generowania spersonalizowanych ćwiczeń. Wygenerowana treść jest przeznaczona wyłącznie do celów informacyjnych.\n\n5. Ograniczenie odpowiedzialności\nAplikacja nie jest poradą medyczną. W przypadku problemów zdrowotnych skonsultuj się z profesjonalistami.\n\n6. Zmiany w warunkach\nMożemy aktualizować te warunki. Kontynuacja korzystania oznacza akceptację.\n\nOstatnia aktualizacja: grudzień 2024';
 }
