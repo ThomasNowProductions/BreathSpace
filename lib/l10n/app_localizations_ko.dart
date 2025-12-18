@@ -93,6 +93,15 @@ class AppLocalizationsKo extends AppLocalizations {
   String get useListView => '목록 보기 사용';
 
   @override
+  String get viewMode => '보기 모드';
+
+  @override
+  String get listView => '목록 보기';
+
+  @override
+  String get aiMode => 'AI 모드';
+
+  @override
   String get start => '시작';
 
   @override

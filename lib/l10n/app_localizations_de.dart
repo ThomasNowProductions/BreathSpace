@@ -93,6 +93,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get useListView => 'Listenansicht verwenden';
 
   @override
+  String get viewMode => 'Ansichtsmodus';
+
+  @override
+  String get listView => 'Listenansicht';
+
+  @override
+  String get aiMode => 'KI-Modus';
+
+  @override
   String get start => 'Start';
 
   @override

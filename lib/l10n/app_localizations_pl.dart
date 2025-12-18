@@ -93,6 +93,15 @@ class AppLocalizationsPl extends AppLocalizations {
   String get useListView => 'Użyj widoku listy';
 
   @override
+  String get viewMode => 'Tryb widoku';
+
+  @override
+  String get listView => 'Widok listy';
+
+  @override
+  String get aiMode => 'Tryb AI';
+
+  @override
   String get start => 'Rozpocznij';
 
   @override

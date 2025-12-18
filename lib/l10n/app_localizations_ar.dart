@@ -93,6 +93,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get useListView => 'استخدام عرض القائمة';
 
   @override
+  String get viewMode => 'وضع العرض';
+
+  @override
+  String get listView => 'عرض القائمة';
+
+  @override
+  String get aiMode => 'وضع الذكاء الاصطناعي';
+
+  @override
   String get start => 'بدء';
 
   @override

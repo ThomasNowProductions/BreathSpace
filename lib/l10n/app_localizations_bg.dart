@@ -94,6 +94,15 @@ class AppLocalizationsBg extends AppLocalizations {
   String get useListView => 'Използване на изгледа в списък';
 
   @override
+  String get viewMode => 'Режим на изглед';
+
+  @override
+  String get listView => 'Изглед в списък';
+
+  @override
+  String get aiMode => 'Режим на изкуствен интелект';
+
+  @override
   String get start => 'Старт';
 
   @override

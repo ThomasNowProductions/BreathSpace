@@ -93,6 +93,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get useListView => 'Liste Görünümü Kullan';
 
   @override
+  String get viewMode => 'Görünüm Modu';
+
+  @override
+  String get listView => 'Liste Görünümü';
+
+  @override
+  String get aiMode => 'AI Modu';
+
+  @override
   String get start => 'Başla';
 
   @override

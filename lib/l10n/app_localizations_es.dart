@@ -94,6 +94,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get useListView => 'Usar vista de lista';
 
   @override
+  String get viewMode => 'Modo de vista';
+
+  @override
+  String get listView => 'Vista de lista';
+
+  @override
+  String get aiMode => 'Modo IA';
+
+  @override
   String get start => 'Empezar';
 
   @override

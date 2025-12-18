@@ -93,6 +93,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get useListView => 'Использовать список';
 
   @override
+  String get viewMode => 'Режим просмотра';
+
+  @override
+  String get listView => 'Просмотр списком';
+
+  @override
+  String get aiMode => 'Режим ИИ';
+
+  @override
   String get start => 'Начать';
 
   @override

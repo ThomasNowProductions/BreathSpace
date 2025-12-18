@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 import 'package:BreathSpace/l10n/app_localizations.dart';
 
 import 'main.dart';
+import 'settings_provider.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -18,6 +20,7 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
+  ViewMode _selectedViewMode = ViewMode.list; // Default to list view
 
   @override
   void initState() {
@@ -166,7 +169,48 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                     ),
                   ),
                 ),
-                const Spacer(flex: 3),
+                const Spacer(flex: 1),
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: DropdownButtonFormField<ViewMode>(
+                        initialValue: _selectedViewMode,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).viewMode,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                        ),
+                        items: ViewMode.values.map((ViewMode mode) {
+                          return DropdownMenuItem<ViewMode>(
+                            value: mode,
+                            child: Text(
+                              mode == ViewMode.list
+                                ? AppLocalizations.of(context).listView
+                                : AppLocalizations.of(context).aiMode,
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (ViewMode? newValue) {
+                          if (newValue != null) {
+                            setState(() {
+                              _selectedViewMode = newValue;
+                            });
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
                 FadeTransition(
                   opacity: _fadeAnimation,
                   child: SlideTransition(
@@ -174,12 +218,16 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                     child: Container(
                       width: double.infinity,
                       height: 56,
-                      margin: const EdgeInsets.only(bottom: 48),
+                      margin: const EdgeInsets.only(bottom: 48, left: 16, right: 16),
                       child: ElevatedButton(
                         onPressed: () async {
-                          final context = this.context;
+                          final settingsProvider = Provider.of<SettingsProvider>(context, listen: false);
                           final prefs = await SharedPreferences.getInstance();
                           await prefs.setBool('seen', true);
+
+                          // Save the selected view mode using the existing provider
+                          await settingsProvider.setViewMode(_selectedViewMode);
+
                           if (context.mounted) {
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(builder: (_) => const BreathingExerciseScreen()),

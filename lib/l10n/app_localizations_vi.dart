@@ -93,6 +93,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get useListView => 'Sử dụng Danh sách';
 
   @override
+  String get viewMode => 'Chế độ xem';
+
+  @override
+  String get listView => 'Chế độ xem danh sách';
+
+  @override
+  String get aiMode => 'Chế độ AI';
+
+  @override
   String get start => 'Bắt đầu';
 
   @override

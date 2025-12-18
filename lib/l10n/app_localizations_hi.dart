@@ -93,6 +93,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get useListView => 'लिस्ट व्यू का उपयोग करें';
 
   @override
+  String get viewMode => 'दृश्य मोड';
+
+  @override
+  String get listView => 'सूची दृश्य';
+
+  @override
+  String get aiMode => 'AI मोड';
+
+  @override
   String get start => 'शुरू करें';
 
   @override

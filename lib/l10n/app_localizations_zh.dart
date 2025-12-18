@@ -93,6 +93,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get useListView => '使用列表视图';
 
   @override
+  String get viewMode => '视图模式';
+
+  @override
+  String get listView => '列表视图';
+
+  @override
+  String get aiMode => 'AI模式';
+
+  @override
   String get start => '开始';
 
   @override

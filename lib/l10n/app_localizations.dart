@@ -304,6 +304,24 @@ abstract class AppLocalizations {
   /// **'Use List View'**
   String get useListView;
 
+  /// No description provided for @viewMode.
+  ///
+  /// In en, this message translates to:
+  /// **'View Mode'**
+  String get viewMode;
+
+  /// No description provided for @listView.
+  ///
+  /// In en, this message translates to:
+  /// **'List View'**
+  String get listView;
+
+  /// No description provided for @aiMode.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Mode'**
+  String get aiMode;
+
   /// No description provided for @start.
   ///
   /// In en, this message translates to:

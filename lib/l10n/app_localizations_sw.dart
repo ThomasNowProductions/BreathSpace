@@ -93,6 +93,15 @@ class AppLocalizationsSw extends AppLocalizations {
   String get useListView => 'Tumia Orodha';
 
   @override
+  String get viewMode => 'Hali ya Kuona';
+
+  @override
+  String get listView => 'Mtazamo wa Orodha';
+
+  @override
+  String get aiMode => 'Hali ya AI';
+
+  @override
   String get start => 'Anza';
 
   @override

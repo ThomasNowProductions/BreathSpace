@@ -93,6 +93,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get useListView => 'Використовувати перегляд списком';
 
   @override
+  String get viewMode => 'Режим перегляду';
+
+  @override
+  String get listView => 'Перегляд списком';
+
+  @override
+  String get aiMode => 'Режим ШІ';
+
+  @override
   String get start => 'Почати';
 
   @override

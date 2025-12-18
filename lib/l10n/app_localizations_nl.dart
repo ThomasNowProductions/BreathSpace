@@ -93,6 +93,15 @@ class AppLocalizationsNl extends AppLocalizations {
   String get useListView => 'Gebruik lijstweergave';
 
   @override
+  String get viewMode => 'Weergavemodus';
+
+  @override
+  String get listView => 'Lijstweergave';
+
+  @override
+  String get aiMode => 'AI-modus';
+
+  @override
   String get start => 'Start';
 
   @override

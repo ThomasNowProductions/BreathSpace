@@ -93,6 +93,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get useListView => 'שימוש בתצוגת רשימה';
 
   @override
+  String get viewMode => 'מצב תצוגה';
+
+  @override
+  String get listView => 'תצוגת רשימה';
+
+  @override
+  String get aiMode => 'מצב בינה מלאכותית';
+
+  @override
   String get start => 'התחל';
 
   @override

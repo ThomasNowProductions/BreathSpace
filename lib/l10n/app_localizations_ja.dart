@@ -93,6 +93,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get useListView => 'リストビューを使用';
 
   @override
+  String get viewMode => '表示モード';
+
+  @override
+  String get listView => 'リスト表示';
+
+  @override
+  String get aiMode => 'AIモード';
+
+  @override
   String get start => '開始';
 
   @override

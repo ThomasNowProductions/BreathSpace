@@ -93,6 +93,15 @@ class AppLocalizationsTh extends AppLocalizations {
   String get useListView => 'ใช้มุมมองรายการ';
 
   @override
+  String get viewMode => 'โหมดการแสดงผล';
+
+  @override
+  String get listView => 'มุมมองรายการ';
+
+  @override
+  String get aiMode => 'โหมด AI';
+
+  @override
   String get start => 'เริ่มต้น';
 
   @override

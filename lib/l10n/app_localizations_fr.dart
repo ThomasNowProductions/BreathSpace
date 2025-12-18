@@ -94,6 +94,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get useListView => 'Utiliser la vue en liste';
 
   @override
+  String get viewMode => 'Mode d\'affichage';
+
+  @override
+  String get listView => 'Vue en liste';
+
+  @override
+  String get aiMode => 'Mode IA';
+
+  @override
   String get start => 'Commencer';
 
   @override
