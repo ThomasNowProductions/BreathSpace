@@ -87,9 +87,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get themeDark => 'Tối';
 
   @override
-  String get autoSelectSearchBar => 'Tự động chọn thanh tìm kiếm';
-
-  @override
   String get useListView => 'Sử dụng Danh sách';
 
   @override

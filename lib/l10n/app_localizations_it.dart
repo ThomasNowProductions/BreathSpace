@@ -87,10 +87,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get themeDark => 'Scuro';
 
   @override
-  String get autoSelectSearchBar =>
-      'Seleziona automaticamente la barra di ricerca';
-
-  @override
   String get useListView => 'Usa vista elenco';
 
   @override

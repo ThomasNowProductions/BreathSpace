@@ -87,9 +87,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get themeDark => 'داكن';
 
   @override
-  String get autoSelectSearchBar => 'تحديد شريط البحث تلقائيًا';
-
-  @override
   String get useListView => 'استخدام عرض القائمة';
 
   @override

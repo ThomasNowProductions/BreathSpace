@@ -7,14 +7,12 @@ enum VoiceGuideMode { off, thomas }
 enum ViewMode { list, ai, quiz }
 
 class SettingsProvider extends ChangeNotifier {
-  bool _autoSelectSearchBar = false;
   LanguagePreference _languagePreference = LanguagePreference.system;
   bool _soundEffectsEnabled = true;
   MusicMode _musicMode = MusicMode.off;
   VoiceGuideMode _voiceGuideMode = VoiceGuideMode.off;
   ViewMode _viewMode = ViewMode.list;
 
-  bool get autoSelectSearchBar => _autoSelectSearchBar;
   LanguagePreference get languagePreference => _languagePreference;
   bool get soundEffectsEnabled => _soundEffectsEnabled;
   MusicMode get musicMode => _musicMode;
@@ -66,7 +64,6 @@ class SettingsProvider extends ChangeNotifier {
 
   Future<void> _loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
-    _autoSelectSearchBar = prefs.getBool('autoSelectSearchBar') ?? false;
     _soundEffectsEnabled = prefs.getBool('soundEffectsEnabled') ?? true;
     final viewModeString = prefs.getString('viewMode') ?? 'list';
     _viewMode = viewModeString == 'ai'
@@ -151,12 +148,6 @@ class SettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> setAutoSelectSearchBar(bool value) async {
-    _autoSelectSearchBar = value;
-    notifyListeners();
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('autoSelectSearchBar', value);
-  }
 
   Future<void> setLanguagePreference(LanguagePreference preference) async {
     _languagePreference = preference;

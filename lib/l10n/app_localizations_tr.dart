@@ -87,9 +87,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get themeDark => 'Koyu';
 
   @override
-  String get autoSelectSearchBar => 'Arama çubuğunu otomatik seç';
-
-  @override
   String get useListView => 'Liste Görünümü Kullan';
 
   @override

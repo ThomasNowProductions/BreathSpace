@@ -87,9 +87,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get themeDark => 'כהה';
 
   @override
-  String get autoSelectSearchBar => 'בחירת סרגל החיפוש אוטומטית';
-
-  @override
   String get useListView => 'שימוש בתצוגת רשימה';
 
   @override

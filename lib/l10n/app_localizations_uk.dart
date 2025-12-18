@@ -87,9 +87,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get themeDark => 'Темна';
 
   @override
-  String get autoSelectSearchBar => 'Автоматичне виділення рядка пошуку';
-
-  @override
   String get useListView => 'Використовувати перегляд списком';
 
   @override

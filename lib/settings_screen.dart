@@ -377,17 +377,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _buildSectionHeader('Behavior'),
                 const SizedBox(height: 8),
                 _buildSettingsCard(
-                  title: AppLocalizations.of(context).autoSelectSearchBar,
-                  trailing: Switch(
-                    value: settingsProvider.autoSelectSearchBar,
-                    onChanged: (bool value) {
-                      settingsProvider.setAutoSelectSearchBar(value);
-                    },
-                    activeThumbColor: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                _buildSettingsCard(
                   title: AppLocalizations.of(context).voiceGuide,
                   trailing: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),

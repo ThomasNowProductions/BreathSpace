@@ -277,12 +277,8 @@ class _BreathingExerciseScreenState extends State<BreathingExerciseScreen> with 
       curve: Curves.easeOut,
     ));
 
-    // Auto-select search bar if setting is enabled
+    // Start fade animation after a short delay
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && _settingsProvider.autoSelectSearchBar) {
-        FocusScope.of(context).requestFocus(_searchFocusNode);
-      }
-      // Start fade animation after a short delay
       Future.delayed(const Duration(milliseconds: 100), () {
         if (mounted) _fadeController.forward();
       });

@@ -87,9 +87,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get themeDark => 'Donker';
 
   @override
-  String get autoSelectSearchBar => 'Zoekbalk automatisch selecteren';
-
-  @override
   String get useListView => 'Gebruik lijstweergave';
 
   @override

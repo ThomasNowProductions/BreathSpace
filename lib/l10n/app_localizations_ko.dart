@@ -87,9 +87,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get themeDark => '어두운';
 
   @override
-  String get autoSelectSearchBar => '검색창 자동 선택';
-
-  @override
   String get useListView => '목록 보기 사용';
 
   @override

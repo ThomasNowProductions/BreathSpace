@@ -87,9 +87,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get themeDark => 'ダーク';
 
   @override
-  String get autoSelectSearchBar => '検索バーを自動選択';
-
-  @override
   String get useListView => 'リストビューを使用';
 
   @override

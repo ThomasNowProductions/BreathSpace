@@ -87,9 +87,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get themeDark => '深色';
 
   @override
-  String get autoSelectSearchBar => '自动选择搜索栏';
-
-  @override
   String get useListView => '使用列表视图';
 
   @override

@@ -87,10 +87,6 @@ class AppLocalizationsBg extends AppLocalizations {
   String get themeDark => 'Тъмна';
 
   @override
-  String get autoSelectSearchBar =>
-      'Автоматично избиране на лентата за търсene';
-
-  @override
   String get useListView => 'Използване на изгледа в списък';
 
   @override

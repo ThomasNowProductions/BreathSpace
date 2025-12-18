@@ -87,9 +87,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get themeDark => 'Giza';
 
   @override
-  String get autoSelectSearchBar => 'Chagua kiotomatiki upau ya utafutaji';
-
-  @override
   String get useListView => 'Tumia Orodha';
 
   @override

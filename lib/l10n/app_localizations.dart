@@ -292,12 +292,6 @@ abstract class AppLocalizations {
   /// **'Dark'**
   String get themeDark;
 
-  /// No description provided for @autoSelectSearchBar.
-  ///
-  /// In en, this message translates to:
-  /// **'Auto-select search bar'**
-  String get autoSelectSearchBar;
-
   /// No description provided for @useListView.
   ///
   /// In en, this message translates to:

@@ -87,9 +87,6 @@ class AppLocalizationsPl extends AppLocalizations {
   String get themeDark => 'Ciemny';
 
   @override
-  String get autoSelectSearchBar => 'Automatycznie zaznacz pasek wyszukiwania';
-
-  @override
   String get useListView => 'Użyj widoku listy';
 
   @override
