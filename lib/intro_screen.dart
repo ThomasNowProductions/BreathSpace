@@ -21,6 +21,7 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
   late Animation<double> _fadeAnimation;
   late Animation<Offset> _slideAnimation;
   ViewMode _selectedViewMode = ViewMode.list; // Default to list view
+  LanguagePreference _selectedLanguage = LanguagePreference.system; // Default to system
 
   @override
   void initState() {
@@ -53,6 +54,45 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
   void dispose() {
     _animationController.dispose();
     super.dispose();
+  }
+
+  String _getLanguageName(LanguagePreference lang, BuildContext context) {
+    switch (lang) {
+      case LanguagePreference.system:
+        return AppLocalizations.of(context).languageSystem;
+      case LanguagePreference.ar:
+        return AppLocalizations.of(context).languageArabic;
+      case LanguagePreference.bg:
+        return AppLocalizations.of(context).languageBulgarian;
+      case LanguagePreference.de:
+        return AppLocalizations.of(context).languageGerman;
+      case LanguagePreference.en:
+        return AppLocalizations.of(context).languageEnglish;
+      case LanguagePreference.es:
+        return AppLocalizations.of(context).languageSpanish;
+      case LanguagePreference.fr:
+        return AppLocalizations.of(context).languageFrench;
+      case LanguagePreference.hi:
+        return AppLocalizations.of(context).languageHindi;
+      case LanguagePreference.it:
+        return AppLocalizations.of(context).languageItalian;
+      case LanguagePreference.ja:
+        return AppLocalizations.of(context).languageJapanese;
+      case LanguagePreference.ko:
+        return AppLocalizations.of(context).languageKorean;
+      case LanguagePreference.nl:
+        return AppLocalizations.of(context).languageDutch;
+      case LanguagePreference.pl:
+        return AppLocalizations.of(context).languagePolish;
+      case LanguagePreference.pt:
+        return AppLocalizations.of(context).languagePortuguese;
+      case LanguagePreference.ru:
+        return AppLocalizations.of(context).languageRussian;
+      case LanguagePreference.tr:
+        return AppLocalizations.of(context).languageTurkish;
+      case LanguagePreference.zh:
+        return AppLocalizations.of(context).languageChinese;
+    }
   }
 
   @override
@@ -177,6 +217,44 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: DropdownButtonFormField<LanguagePreference>(
+                        initialValue: _selectedLanguage,
+                        decoration: InputDecoration(
+                          labelText: AppLocalizations.of(context).language,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                        ),
+                        items: LanguagePreference.values.map((LanguagePreference lang) {
+                          String langName = _getLanguageName(lang, context);
+                          return DropdownMenuItem<LanguagePreference>(
+                            value: lang,
+                            child: Text(langName),
+                          );
+                        }).toList(),
+                        onChanged: (LanguagePreference? newValue) {
+                          if (newValue != null) {
+                            setState(() {
+                              _selectedLanguage = newValue;
+                            });
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation,
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: DropdownButtonFormField<ViewMode>(
                         initialValue: _selectedViewMode,
                         decoration: InputDecoration(
@@ -225,8 +303,9 @@ class _IntroScreenState extends State<IntroScreen> with SingleTickerProviderStat
                           final prefs = await SharedPreferences.getInstance();
                           await prefs.setBool('seen', true);
 
-                          // Save the selected view mode using the existing provider
+                          // Save the selected view mode and language using the existing provider
                           await settingsProvider.setViewMode(_selectedViewMode);
+                          await settingsProvider.setLanguagePreference(_selectedLanguage);
 
                           if (context.mounted) {
                             Navigator.of(context).pushReplacement(
