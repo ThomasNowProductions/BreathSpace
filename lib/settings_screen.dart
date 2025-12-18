@@ -105,7 +105,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   trailing: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Theme.of(context).cardColor,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
