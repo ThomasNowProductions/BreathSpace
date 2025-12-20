@@ -77,131 +77,150 @@ class _EmotionSelectorWidgetState extends State<EmotionSelectorWidget>
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            "How are you feeling?",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           
-          // Emotion grid - now scrollable and dynamic
+          // Emotion selector with larger, more playful design
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraints) {
-                // Calculate columns based on available width
+                // Responsive grid that adapts to screen size
                 int crossAxisCount;
+                double childAspectRatio;
+                double cardSize;
+                
                 if (constraints.maxWidth < 400) {
-                  crossAxisCount = 2; // Small screens - 2x3
+                  // Small phones: 2 columns
+                  crossAxisCount = 2;
+                  childAspectRatio = 1.0;
+                  cardSize = 90;
                 } else if (constraints.maxWidth < 600) {
-                  crossAxisCount = 3; // Medium screens - 3x2
+                  // Large phones: 2 columns, larger cards
+                  crossAxisCount = 2;
+                  childAspectRatio = 1.0;
+                  cardSize = 110;
                 } else if (constraints.maxWidth < 900) {
-                  crossAxisCount = 4; // Large tablets - 4x2
+                  // Tablets: 3 columns
+                  crossAxisCount = 3;
+                  childAspectRatio = 1.0;
+                  cardSize = 90;
                 } else {
-                  crossAxisCount = 6; // Desktop - all in one row
+                  // Desktop: 6 columns
+                  crossAxisCount = 6;
+                  childAspectRatio = 1.0;
+                  cardSize = 80;
                 }
 
-                final gridView = GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        crossAxisSpacing: constraints.maxWidth > 1200 ? 20 : 8,
-                        mainAxisSpacing: constraints.maxWidth > 1200 ? 20 : 8,
-                        childAspectRatio: 1.0,
-                      ),
-                      itemCount: Emotion.values.length,
+                return GridView.builder(
+                  shrinkWrap: true,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    childAspectRatio: childAspectRatio,
+                  ),
+                  itemCount: Emotion.values.length,
                   itemBuilder: (context, index) {
                     final emotion = Emotion.values[index];
                     final isSelected = _selectedEmotion == emotion;
-                    
-                    return AnimatedBuilder(
-                      animation: isSelected && _selectedEmotion == emotion 
-                          ? _bounceAnimation 
-                          : const AlwaysStoppedAnimation(1.0),
-                      builder: (context, child) {
-                        return Transform.scale(
-                          scale: isSelected ? _bounceAnimation.value : 1.0,
-                          child: GestureDetector(
-                            onTap: () => _onEmotionTap(emotion),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: isSelected 
-                                    ? emotion.color.withValues(alpha: 0.2)
-                                    : Colors.grey.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: isSelected 
-                                      ? emotion.color 
-                                      : Colors.grey.withValues(alpha: 0.3),
-                                  width: isSelected ? 3 : 1,
-                                ),
-                                boxShadow: isSelected
-                                    ? [
-                                        BoxShadow(
-                                          color: emotion.color.withValues(alpha: 0.3),
-                                          blurRadius: 15,
-                                          spreadRadius: 2,
-                                        ),
-                                      ]
-                                    : [
-                                        BoxShadow(
-                                          color: Colors.black.withValues(alpha: 0.05),
-                                          blurRadius: 5,
-                                        ),
-                                    ],
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    emotion.icon,
-                                    size: 28,
-                                    color: isSelected 
-                                        ? emotion.color 
-                                        : Colors.grey.shade600,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    emotion.label,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: isSelected 
-                                          ? emotion.color 
-                                          : Colors.grey.shade700,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                    return _buildEmotionCard(emotion, isSelected, cardSize);
                   },
                 );
-
-                // Apply constraint only if requested (for desktop layouts)
-                if (widget.constrainWidth) {
-                  return Center(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: constraints.maxWidth > 800 ? 600.0 : double.infinity,
-                      ),
-                      child: gridView,
-                    ),
-                  );
-                } else {
-                  return gridView;
-                }
               },
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildEmotionCard(Emotion emotion, bool isSelected, double iconSize) {
+    return AnimatedBuilder(
+      animation: isSelected ? _bounceAnimation : const AlwaysStoppedAnimation(1.0),
+      builder: (context, child) {
+        return Transform.scale(
+          scale: isSelected ? _bounceAnimation.value : 1.0,
+          child: GestureDetector(
+            onTap: () => _onEmotionTap(emotion),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              width: 140,
+              height: 140,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: isSelected
+                      ? [
+                          emotion.color.withValues(alpha: 0.3),
+                          emotion.color.withValues(alpha: 0.1),
+                        ]
+                      : [
+                          Colors.white.withValues(alpha: 0.9),
+                          Colors.white.withValues(alpha: 0.7),
+                        ],
+                ),
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(
+                  color: isSelected ? emotion.color : Colors.grey.shade300,
+                  width: isSelected ? 4 : 2,
+                ),
+                boxShadow: isSelected
+                    ? [
+                        BoxShadow(
+                          color: emotion.color.withValues(alpha: 0.4),
+                          blurRadius: 20,
+                          spreadRadius: 3,
+                          offset: const Offset(0, 8),
+                        ),
+                      ]
+                    : [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Large, playful icon with background circle
+                  Container(
+                    width: iconSize,
+                    height: iconSize,
+                    decoration: BoxDecoration(
+                      color: isSelected 
+                          ? emotion.color.withValues(alpha: 0.2)
+                          : emotion.color.withValues(alpha: 0.1),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: isSelected ? emotion.color : emotion.color.withValues(alpha: 0.3),
+                        width: 2,
+                      ),
+                    ),
+                    child: Icon(
+                      emotion.icon,
+                      size: iconSize * 0.6,
+                      color: emotion.color,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    emotion.label,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: isSelected ? emotion.color : Colors.grey.shade700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
